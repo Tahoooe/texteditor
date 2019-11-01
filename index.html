@@ -1,22 +1,80 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<title>Expérimentation</title>
+	<title>(the) texteditor</title>
 	<meta name="description" content="" />
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css">
-
 	<link rel="stylesheet" href="src/css/style.css">
 </head>
 <body>
 
+<span id="openSettings" class="fa fa-cog" onclick=""></span>
+
+<div id="settingsPannel">
+	<h3>Settings</h3>
+	
+	<span class="label">Share</span>
+	<div id="shareBox">
+	    <textarea id="share" contenteditable>bite</textarea>
+	    <span>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.9 55.9"><path d="M35,48.9v4.4a2.7,2.7,0,0,1-2.7,2.6H2.6A2.6,2.6,0,0,1,0,53.3V13.1a2.6,2.6,0,0,1,2.6-2.6h7.9V42.8a6.1,6.1,0,0,0,6.1,6.1Zm0-37.5V0H16.6A2.6,2.6,0,0,0,14,2.6V42.8a2.6,2.6,0,0,0,2.6,2.6H46.3a2.5,2.5,0,0,0,2.6-2.6V14H37.6A2.6,2.6,0,0,1,35,11.4ZM48.2,8,41,.8A2.7,2.7,0,0,0,39.1,0h-.6V10.5H48.9V9.8A2.4,2.4,0,0,0,48.2,8Z" fill="#707070"/></svg>
+	    </span>
+	</div>
+	
+	<span class="label">Writing mode</span>
+	<div id="togglingTwoCtn"  class="togglerContainer writingMode">
+		<div class="pos" id="left"  onclick="toggle('left',this)">Classic</div>
+		<div class="pos" id="right" onclick="toggle('right',this)">Markdown</div>
+		<div id="choice"></div>
+	</div>
+
+	<span class="label">Appearance</span>
+	<div id="togglingThreeCtn" class="togglerContainer appearance">
+		<div class="pos" id="left" onclick="toggle('left',this)">Light</div>
+		<div class="pos" id="center" onclick="toggle('center',this)">Auto</div>
+		<div class="pos" id="right" onclick="toggle('right',this)">Dark</div>
+
+		<div id="choice"></div>
+	</div>
+
+	<p id="showWords">
+		<input type="checkbox" id="words" />
+		<label for="words" aria-describedby="label">Number of words</label>
+	</p>
+
+	<p id="showCharacters">
+		<input type="checkbox" id="characters" />
+		<label for="characters" aria-describedby="label">Number of characters</label>
+	</p>
+
+	<p id="showTools">
+		<input type="checkbox" id="tools" />
+		<label for="tools" aria-describedby="label">Always show tools</label>
+	</p>
+
+	<div class="customFont">
+		<div id="fontLabel">Font</div>
+
+		<div class="custom-select" style="width:200px;">
+			<select>
+				<option value="1">Avenir Next</option>
+				<option value="2" class="selectInside">Helvetica Neue</option>
+				<option value="3" class="selectInside">Courier New</option>
+				<option value="4" class="selectInside">Open Sans</option>
+				<option value="5">Palatino</option>
+				<option value="5">Comic Neue</option>
+			</select>
+		</div>
+	</div>
+</div>
+
 <div class="toolboxContainer">
 	<div class="mask top">
-		<span id="fullscreen" class="fa fa-expand" onclick="fullScreen();"></span>
+		<span id="fullscreenButton" class="fa fa-expand" onclick="fullScreen();"></span>
 	</div>
 
 	<div class="mask left"></div>
@@ -79,9 +137,7 @@
 	<div class="mask right"></div>
 	<div class="mask bottom">
 		<div id="wordCounter"></div>
-		<span id="openSettings" class="fa fa-cog" onclick=""></span>
 	</div>
-
 </div>
 
 <div id="lightContainer">
@@ -89,15 +145,9 @@
 </div>
 
 <div class="editorContainer">
-	<div id="editor" contenteditable="true" >Vestibulum ac libero vitae nulla ultrices consequat. Proin vel tellus est. Suspendisse laoreet, turpis vitae rhoncus pharetra, turpis dolor bibendum magna, quis laoreet tellus justo in enim. Nullam nec ante ut ante porta scelerisque. Phasellus feugiat tellus tortor, ut consectetur turpis suscipit luctus. Praesent consectetur quis ante sit amet malesuada. Integer rutrum sed felis at mattis.
+	<div id="editor" contenteditable="true">Vestibulum ac libero vitae nulla ultrices consequat. Proin vel tellus est. Suspendisse laoreet, turpis vitae rhoncus pharetra, turpis dolor bibendum magna, quis laoreet tellus justo in enim. Nullam nec ante ut ante porta scelerisque. Phasellus feugiat tellus tortor, ut consectetur turpis suscipit luctus. Praesent consectetur quis ante sit amet malesuada. Integer rutrum sed felis at mattis.
 	</div>
 </div>
-
-
-
-
-
-
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="src/js/jquery.min.js"></script> -->

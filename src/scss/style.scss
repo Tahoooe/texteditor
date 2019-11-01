@@ -1,24 +1,5 @@
 @import 'global';
 
-@font-face{
-    font-family : "Avenir Next";
-    src : url('../fonts/AvenirNextRegular.ttf');
-}
-
-@font-face{
-    font-family : "Avenir Next Bold";
-    src : url('../fonts/AvenirNextBold.ttf');
-}
-
-$mainColor : #F2F2F2;
-$secondColor : #707070;
-$thirdColor: black;
-
-$mainFont: Avenir Next;
-$mainFontBold : Avenir Next Bold;
-
-$iconSize: 1.75em;
-
 body {
 	margin: 0;
 	overflow-x: hidden;
@@ -47,7 +28,138 @@ b {
 	}
 }
 
+#openSettings {
+	position: fixed;
+	right: 1.4em;
+	bottom: 1em;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	cursor: pointer;
+	color: $secondColor;
+	width: 2em;
+	height: 2em;
+	font-size: $iconSize;
+	transition: color .2s;
+	z-index: 91;
 
+	&:hover {
+		color: $thirdColor
+	}
+}
+
+#settingsPannel {
+	position: fixed;
+	box-sizing: border-box;
+	right: 0;
+	width: 320px;
+	height: 100vh;
+	padding: 0 1.5em;
+	background-color: white;
+	z-index: 90;
+	color: $secondColor;
+	box-shadow: 0px 1px 40px 1.5px rgba(0, 0, 0, 0.1);
+	font-size: 1.2em;
+
+	h3 {
+		margin-top: 2em;
+		text-align: center;
+	}
+
+	.label {
+		display: block;
+		margin-bottom: .3em;
+	}
+
+	#shareBox, .writingMode, .appearance, .customFont {
+		margin-bottom: 2em;
+	}
+
+	#showWords, #showTools, #showCharacters {
+		margin-bottom: 1.5em;
+	}
+
+	#shareBox {
+	    display:inline-block;
+	    position:relative;
+	    width: 100%;
+
+	    #share {
+	        resize: none;
+	        position: relative;
+	        border: 0px;
+	        display: block;
+	        box-sizing: border-box;
+	        background-color: $mainColor;
+	        color: $secondColor;
+	        height: $inputHeight;
+	        width: 100%;
+	        line-height: $inputHeight;
+	        padding: 0 1em;
+	        font-family: $mainFont;
+	    }
+
+	    span {
+	        position: absolute;
+	        top: .7em;
+	        right: .8em;
+	        cursor: pointer;
+
+	        svg {
+	            width: 15px;
+	        }
+	    }
+	}
+
+	.writingMode {
+	    @include toggleContainer;
+
+	    #choice {
+	        width: 50%;
+	    }
+
+	    &.tgLeft #choice {
+	        left: 0;
+	    }
+
+	    &.tgRight #choice {
+	        left: 50%;
+	    }
+	}
+
+	#togglingThreeCtn {
+	    @include toggleContainer;
+
+	    #choice {
+	        width: 33.33%;
+	    }
+
+	    &.tgLeft #choice {
+	        left: 0;
+	    }
+
+	    &.tgCenter #choice {
+	        left: 33.33%;
+	    }
+
+	    &.tgRight #choice {
+	        left: 66.66%;
+	    }
+	}
+
+	@include checkbox;
+
+	@include customSelect;
+
+	.customFont {
+		display: flex;
+		justify-content: space-between;
+
+		#fontLabel {
+			line-height: 2.5em;
+		}
+	}
+}
 
 .toolboxContainer {
 	z-index: 5;
@@ -109,7 +221,7 @@ b {
 		display: flex;
 		justify-content: flex-end;
 
-		#fullscreen {
+		#fullscreenButton {
 			display: flex;
 			justify-content: flex-end;
 			cursor: pointer;
@@ -146,23 +258,7 @@ b {
 			margin-bottom: 1em;
 		}
 
-		#openSettings {
-			margin-right: 1.4em;
-			margin-bottom: 1em;
-			display: flex;
-			align-items: flex-end;
-			justify-content: flex-end;
-			cursor: pointer;
-			color: $secondColor;
-			width: 2em;
-			height: 2em;
-			font-size: $iconSize;
-			transition: color .2s;
 
-			&:hover {
-				color: $thirdColor
-			}
-		}
 	}
 }
 

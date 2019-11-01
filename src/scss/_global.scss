@@ -1,10 +1,194 @@
-// $variable: #333;
+@font-face{
+    font-family : "Avenir Next";
+    src : url('../fonts/AvenirNextRegular.ttf');
+}
 
-// @font-face {
-//     font-family: '';
-//     src: url('../fonts/.woff2') format('woff2'),
-//         url('../fonts/.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
+@font-face{
+    font-family : "Avenir Next Bold";
+    src : url('../fonts/AvenirNextBold.ttf');
+}
 
+$mainColor : #F2F2F2;
+$secondColor : #707070;
+$thirdColor: black;
+
+$mainFont: Avenir Next;
+$mainFontBold : Avenir Next Bold;
+
+$iconSize: 1.75em;
+$inputHeight: 48px;
+
+@mixin toggleContainer {
+    z-index: 13;
+    width: 100%;
+    height: $inputHeight;
+    line-height: $inputHeight;
+    display: flex;
+    position: relative;
+    text-align: center;
+    border: 1px solid $secondColor;
+    cursor: pointer;
+    color: $secondColor;
+
+    .pos {
+        width: 100%;
+        z-index: 14;
+        transition: .25s color ease;
+    }
+
+    #choice {
+        position: absolute;
+        background-color: $secondColor;
+        height: $inputHeight;
+        z-index: 12;
+        transition: .25s left ease;
+    }
+
+    &.tgLeft {
+        #left {
+            color: $mainColor;  
+        }
+
+        #right, #center {
+            color: $secondColor;
+        }
+    }
+
+    &.tgCenter {
+        #center {
+            color: $mainColor;  
+        }
+
+        #right, #left {
+            color: $secondColor;
+        }
+
+    }
+
+    &.tgRight {
+        #right {
+            color: $mainColor;  
+        }
+
+        #left, #center {
+            color: $secondColor;
+        }
+    }
+}
+
+@mixin checkbox {
+	.checkContainer {
+	    position: relative;
+	}
+
+	// faut cacher la vraie case
+	[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+	    position: absolute;
+	    left: 0;
+	    opacity: 0.01;
+	}
+
+	/* label */
+	[type="checkbox"]:not(:checked) + label, [type="checkbox"]:checked + label {
+	    display: block;
+	    position: relative;
+	    line-height: 1.7;
+	}
+
+	/* case */
+	[type="checkbox"]:not(:checked) + label:before, [type="checkbox"]:checked + label:before {
+	    content: '';
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    width: 1.4em;
+	    height: 1.4em;
+	    border: 1px solid $secondColor;
+	    border-radius: 50px;
+	    cursor: pointer;
+	}
+
+	[type="checkbox"]:not(:checked) + label:before {
+	    color: white;
+	}
+
+	[type="checkbox"]:checked + label:before {
+	    background: $secondColor;
+	}
+
+	/* coche */
+	[type="checkbox"]:not(:checked) + label:after, [type="checkbox"]:checked + label:after {
+	    position: absolute;
+	    content: url(../images/check.svg);
+	    line-height: 0;
+	    width: 1em;
+	    top: .4em;
+	    right: .24em;
+	    cursor: pointer;
+	}
+}
+
+@mixin customSelect {
+	/* The container must be positioned relative: */
+	.custom-select {
+	  position: relative;
+	}
+
+	.custom-select select {
+	  display: none; /*hide original SELECT element: */
+	}
+
+	.select-selected {
+	  background-color: $mainColor;
+	}
+
+	/* Style the arrow inside the select element: */
+	.select-selected:after {
+	    position: absolute;
+	    content: url(../images/arrowdown.svg);
+	    width: 1.2em;
+	    top: .7em;
+	    right: .8em;
+	}
+
+	/* Point the arrow upwards when the select box is open (active): */
+	.select-selected.select-arrow-active:after {
+	    transform:rotate(-180deg);
+	    bottom: .7em;
+	}
+
+	/* style the items (options), including the selected item: */
+	.select-items div,.select-selected {
+	  color: $secondColor;
+	  padding: .5em 1em;
+	  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	  cursor: pointer;
+	}
+
+	.selectInside {
+	    border: 1px solid $secondColor;
+	}
+
+	/* Style items (options): */
+	.select-items {
+	  position: absolute;
+	  background-color: $mainColor;
+	  top: 100%;
+	  left: 0;
+	  right: 0;
+	  z-index: 99;
+	}
+
+	.select-items > div:nth-child(1), .select-items > div:nth-child(2), .select-items > div:nth-child(3), .select-items > div:nth-child(4), .select-items > div:nth-child(5) {
+	    border-top: 1px solid $secondColor;
+	}
+
+	/* Hide the items when the select box is closed: */
+	.select-hide {
+	  display: none;
+	}
+
+	.select-items div:hover, .same-as-selected {
+	  background-color: white;
+	}
+}

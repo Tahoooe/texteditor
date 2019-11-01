@@ -29,6 +29,232 @@ b {
     transform: translate3d(-50%, -50%, 0);
     background: radial-gradient(ellipse at center, rgba(112, 112, 112, 0.5) 0%, rgba(112, 112, 112, 0) 50%); }
 
+#openSettings {
+  position: fixed;
+  right: 1.4em;
+  bottom: 1em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  cursor: pointer;
+  color: #707070;
+  width: 2em;
+  height: 2em;
+  font-size: 1.75em;
+  transition: color .2s;
+  z-index: 91; }
+  #openSettings:hover {
+    color: black; }
+
+#settingsPannel {
+  position: fixed;
+  box-sizing: border-box;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  padding: 0 1.5em;
+  background-color: white;
+  z-index: 90;
+  color: #707070;
+  box-shadow: 0px 1px 40px 1.5px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+  /* label */
+  /* case */
+  /* coche */
+  /* The container must be positioned relative: */
+  /* Style the arrow inside the select element: */
+  /* Point the arrow upwards when the select box is open (active): */
+  /* style the items (options), including the selected item: */
+  /* Style items (options): */
+  /* Hide the items when the select box is closed: */ }
+  #settingsPannel h3 {
+    margin-top: 2em;
+    text-align: center; }
+  #settingsPannel .label {
+    display: block;
+    margin-bottom: .3em; }
+  #settingsPannel #shareBox, #settingsPannel .writingMode, #settingsPannel .appearance, #settingsPannel .customFont {
+    margin-bottom: 2em; }
+  #settingsPannel #showWords, #settingsPannel #showTools, #settingsPannel #showCharacters {
+    margin-bottom: 1.5em; }
+  #settingsPannel #shareBox {
+    display: inline-block;
+    position: relative;
+    width: 100%; }
+    #settingsPannel #shareBox #share {
+      resize: none;
+      position: relative;
+      border: 0px;
+      display: block;
+      box-sizing: border-box;
+      background-color: #F2F2F2;
+      color: #707070;
+      height: 48px;
+      width: 100%;
+      line-height: 48px;
+      padding: 0 1em;
+      font-family: Avenir Next; }
+    #settingsPannel #shareBox span {
+      position: absolute;
+      top: .7em;
+      right: .8em;
+      cursor: pointer; }
+      #settingsPannel #shareBox span svg {
+        width: 15px; }
+  #settingsPannel .writingMode {
+    z-index: 13;
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    display: flex;
+    position: relative;
+    text-align: center;
+    border: 1px solid #707070;
+    cursor: pointer;
+    color: #707070; }
+    #settingsPannel .writingMode .pos {
+      width: 100%;
+      z-index: 14;
+      transition: .25s color ease; }
+    #settingsPannel .writingMode #choice {
+      position: absolute;
+      background-color: #707070;
+      height: 48px;
+      z-index: 12;
+      transition: .25s left ease; }
+    #settingsPannel .writingMode.tgLeft #left {
+      color: #F2F2F2; }
+    #settingsPannel .writingMode.tgLeft #right, #settingsPannel .writingMode.tgLeft #center {
+      color: #707070; }
+    #settingsPannel .writingMode.tgCenter #center {
+      color: #F2F2F2; }
+    #settingsPannel .writingMode.tgCenter #right, #settingsPannel .writingMode.tgCenter #left {
+      color: #707070; }
+    #settingsPannel .writingMode.tgRight #right {
+      color: #F2F2F2; }
+    #settingsPannel .writingMode.tgRight #left, #settingsPannel .writingMode.tgRight #center {
+      color: #707070; }
+    #settingsPannel .writingMode #choice {
+      width: 50%; }
+    #settingsPannel .writingMode.tgLeft #choice {
+      left: 0; }
+    #settingsPannel .writingMode.tgRight #choice {
+      left: 50%; }
+  #settingsPannel #togglingThreeCtn {
+    z-index: 13;
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    display: flex;
+    position: relative;
+    text-align: center;
+    border: 1px solid #707070;
+    cursor: pointer;
+    color: #707070; }
+    #settingsPannel #togglingThreeCtn .pos {
+      width: 100%;
+      z-index: 14;
+      transition: .25s color ease; }
+    #settingsPannel #togglingThreeCtn #choice {
+      position: absolute;
+      background-color: #707070;
+      height: 48px;
+      z-index: 12;
+      transition: .25s left ease; }
+    #settingsPannel #togglingThreeCtn.tgLeft #left {
+      color: #F2F2F2; }
+    #settingsPannel #togglingThreeCtn.tgLeft #right, #settingsPannel #togglingThreeCtn.tgLeft #center {
+      color: #707070; }
+    #settingsPannel #togglingThreeCtn.tgCenter #center {
+      color: #F2F2F2; }
+    #settingsPannel #togglingThreeCtn.tgCenter #right, #settingsPannel #togglingThreeCtn.tgCenter #left {
+      color: #707070; }
+    #settingsPannel #togglingThreeCtn.tgRight #right {
+      color: #F2F2F2; }
+    #settingsPannel #togglingThreeCtn.tgRight #left, #settingsPannel #togglingThreeCtn.tgRight #center {
+      color: #707070; }
+    #settingsPannel #togglingThreeCtn #choice {
+      width: 33.33%; }
+    #settingsPannel #togglingThreeCtn.tgLeft #choice {
+      left: 0; }
+    #settingsPannel #togglingThreeCtn.tgCenter #choice {
+      left: 33.33%; }
+    #settingsPannel #togglingThreeCtn.tgRight #choice {
+      left: 66.66%; }
+  #settingsPannel .checkContainer {
+    position: relative; }
+  #settingsPannel [type="checkbox"]:not(:checked), #settingsPannel [type="checkbox"]:checked {
+    position: absolute;
+    left: 0;
+    opacity: 0.01; }
+  #settingsPannel [type="checkbox"]:not(:checked) + label, #settingsPannel [type="checkbox"]:checked + label {
+    display: block;
+    position: relative;
+    line-height: 1.7; }
+  #settingsPannel [type="checkbox"]:not(:checked) + label:before, #settingsPannel [type="checkbox"]:checked + label:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1.4em;
+    height: 1.4em;
+    border: 1px solid #707070;
+    border-radius: 50px;
+    cursor: pointer; }
+  #settingsPannel [type="checkbox"]:not(:checked) + label:before {
+    color: white; }
+  #settingsPannel [type="checkbox"]:checked + label:before {
+    background: #707070; }
+  #settingsPannel [type="checkbox"]:not(:checked) + label:after, #settingsPannel [type="checkbox"]:checked + label:after {
+    position: absolute;
+    content: url(../images/check.svg);
+    line-height: 0;
+    width: 1em;
+    top: .4em;
+    right: .24em;
+    cursor: pointer; }
+  #settingsPannel .custom-select {
+    position: relative; }
+  #settingsPannel .custom-select select {
+    display: none;
+    /*hide original SELECT element: */ }
+  #settingsPannel .select-selected {
+    background-color: #F2F2F2; }
+  #settingsPannel .select-selected:after {
+    position: absolute;
+    content: url(../images/arrowdown.svg);
+    width: 1.2em;
+    top: .7em;
+    right: .8em; }
+  #settingsPannel .select-selected.select-arrow-active:after {
+    transform: rotate(-180deg);
+    bottom: .7em; }
+  #settingsPannel .select-items div, #settingsPannel .select-selected {
+    color: #707070;
+    padding: .5em 1em;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer; }
+  #settingsPannel .selectInside {
+    border: 1px solid #707070; }
+  #settingsPannel .select-items {
+    position: absolute;
+    background-color: #F2F2F2;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99; }
+  #settingsPannel .select-items > div:nth-child(1), #settingsPannel .select-items > div:nth-child(2), #settingsPannel .select-items > div:nth-child(3), #settingsPannel .select-items > div:nth-child(4), #settingsPannel .select-items > div:nth-child(5) {
+    border-top: 1px solid #707070; }
+  #settingsPannel .select-hide {
+    display: none; }
+  #settingsPannel .select-items div:hover, #settingsPannel .same-as-selected {
+    background-color: white; }
+  #settingsPannel .customFont {
+    display: flex;
+    justify-content: space-between; }
+    #settingsPannel .customFont #fontLabel {
+      line-height: 2.5em; }
+
 .toolboxContainer {
   z-index: 5;
   display: grid;
@@ -75,7 +301,7 @@ b {
     grid-area: top;
     display: flex;
     justify-content: flex-end; }
-    .toolboxContainer .top #fullscreen {
+    .toolboxContainer .top #fullscreenButton {
       display: flex;
       justify-content: flex-end;
       cursor: pointer;
@@ -86,7 +312,7 @@ b {
       transition: color .2s;
       margin-right: 1.4em;
       margin-top: 1em; }
-      .toolboxContainer .top #fullscreen:hover {
+      .toolboxContainer .top #fullscreenButton:hover {
         color: black; }
   .toolboxContainer .left {
     grid-area: left; }
@@ -100,20 +326,6 @@ b {
     .toolboxContainer .bottom #wordCounter {
       margin-left: 1.4em;
       margin-bottom: 1em; }
-    .toolboxContainer .bottom #openSettings {
-      margin-right: 1.4em;
-      margin-bottom: 1em;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      cursor: pointer;
-      color: #707070;
-      width: 2em;
-      height: 2em;
-      font-size: 1.75em;
-      transition: color .2s; }
-      .toolboxContainer .bottom #openSettings:hover {
-        color: black; }
 
 .editorContainer {
   top: 5em;
