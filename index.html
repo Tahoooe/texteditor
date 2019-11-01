@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>Expérimentation</title>
+	<meta name="description" content="" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css">
+
+	<link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+
+<div class="toolboxContainer">
+	<div class="mask top">
+		<span id="fullscreen" class="fa fa-expand" onclick="fullScreen();"></span>
+	</div>
+
+	<div class="mask left"></div>
+
+	<div class="toolbox">
+		
+		<div class="tool" onclick="mkHeader();">
+			<span class="fa fa-header"></span>
+		</div>
+
+		<div class="tool" onclick="mkUnderline();">
+			<span class="fa fa-underline"></span>
+		</div>
+
+		<div class="tool" onclick="mkBold();">
+			<span class="fa fa-bold"></span>
+		</div>
+
+		<div class="tool" onclick="mkStrikethrough();">
+			<span class="fa fa-strikethrough"></span>
+		</div>
+
+		<div class="tool" onclick="mkAlignCenter();">
+			<span class="fa fa-align-center"></span>
+		</div>
+
+		<div class="tool" onclick="mkJustify();">
+			<span class="fa fa-align-justify"></span>
+		</div>
+
+		<div class="tool" onclick="mkAlignLeft();">
+			<span class="fa fa-align-left"></span>
+		</div>
+
+		<div class="tool" onclick="mkAlignRight();">
+			<span class="fa fa-align-right"></span>
+		</div>
+
+		<div class="tool" onclick="mkQuote();">
+			<span class="fa fa-quote-left"></span>
+		</div>
+
+		<div class="tool" onclick="mkOrderedList();">
+			<span class="fa fa-list-ol"></span>
+		</div>
+
+		<div class="tool" onclick="mkUnorderedList();">
+			<span class="fa fa-list-ul"></span>
+		</div>
+
+		<div class="tool" onclick="mkLink();">
+			<span class="fa fa-link"></span>
+		</div>
+
+		<div class="tool" onclick="mkUnlink();">
+			<span class="fa fa-unlink"></span>
+		</div>
+	</div>
+
+	<div class="mask right"></div>
+	<div class="mask bottom">
+		<div id="wordCounter"></div>
+		<span id="openSettings" class="fa fa-cog" onclick=""></span>
+	</div>
+
+</div>
+
+<div id="lightContainer">
+	<div id="light"></div>
+</div>
+
+<div class="editorContainer">
+	<div id="editor" contenteditable="true" >Vestibulum ac libero vitae nulla ultrices consequat. Proin vel tellus est. Suspendisse laoreet, turpis vitae rhoncus pharetra, turpis dolor bibendum magna, quis laoreet tellus justo in enim. Nullam nec ante ut ante porta scelerisque. Phasellus feugiat tellus tortor, ut consectetur turpis suscipit luctus. Praesent consectetur quis ante sit amet malesuada. Integer rutrum sed felis at mattis.
+	</div>
+</div>
+
+
+
+
+
+
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="src/js/jquery.min.js"></script> -->
+<script src="src/js/scripts.js"></script>
+</body>
+</html>

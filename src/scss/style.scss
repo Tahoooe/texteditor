@@ -1,0 +1,187 @@
+@import 'global';
+
+@font-face{
+    font-family : "Avenir Next";
+    src : url('../fonts/AvenirNextRegular.ttf');
+}
+
+@font-face{
+    font-family : "Avenir Next Bold";
+    src : url('../fonts/AvenirNextBold.ttf');
+}
+
+$mainColor : #F2F2F2;
+$secondColor : #707070;
+$thirdColor: black;
+
+$mainFont: Avenir Next;
+$mainFontBold : Avenir Next Bold;
+
+$iconSize: 1.75em;
+
+body {
+	margin: 0;
+	overflow-x: hidden;
+	background-color: $mainColor;
+	font-family: $mainFont;
+}
+
+b {
+	font-family: $mainFontBold;
+}
+
+#lightContainer {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	overflow: hidden;
+
+	#light {
+		position: absolute;
+		width: 18rem;
+		height: 18rem;
+		z-index: 4;
+		border-radius: 50%;
+		transform: translate3d(-50%, -50%, 0);
+		background: radial-gradient(ellipse at center, rgba($secondColor, .5) 0%, rgba($secondColor,0) 50%);
+	}
+}
+
+
+
+.toolboxContainer {
+	z-index: 5;
+	display: grid;
+	position: fixed;
+	height: 100vh;
+	width: 100%;
+	grid-template-columns: 10px 53px 1fr;
+	grid-template-rows: 1fr 689px 1fr;
+	grid-gap: 0px 0px;
+	grid-template-areas: "top top top" "left toolbox right" "bottom bottom bottom";
+
+	.toolbox {
+		width: 100%;
+
+		.tool {
+			cursor: pointer;
+			border: 4px solid $mainColor;
+			width: 45px;
+			height: 45px;
+			z-index: 9;
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: background-color .2s;
+			color: $secondColor;
+			font-size: $iconSize;
+
+			&:after {
+				content: '';
+				position: absolute;
+				z-index: -1;
+				background-color: $mainColor;
+				top: 2px;
+				bottom: 2px;
+				right: 2px;
+				left: 2px;
+			}
+
+			&:hover {
+				background-color: $secondColor;
+				color: $thirdColor;
+			}
+
+			&:active {
+				filter: brightness(1.1);
+			}
+		}
+	}
+
+	.mask {
+		z-index: 10;
+		background: $mainColor;
+	}
+
+	.top {
+		grid-area: top;
+		display: flex;
+		justify-content: flex-end;
+
+		#fullscreen {
+			display: flex;
+			justify-content: flex-end;
+			cursor: pointer;
+			color: $secondColor;
+			width: 2em;
+			height: 2em;
+			font-size: $iconSize;
+			transition: color .2s;
+			margin-right: 1.4em;
+			margin-top: 1em;
+
+			&:hover {
+				color: $thirdColor
+			}
+		}
+	}
+
+	.left {
+		grid-area: left;
+	}
+
+	.right {
+		grid-area: right;
+	}
+	
+	.bottom {
+		grid-area: bottom;
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+
+		#wordCounter {
+			margin-left: 1.4em;
+			margin-bottom: 1em;
+		}
+
+		#openSettings {
+			margin-right: 1.4em;
+			margin-bottom: 1em;
+			display: flex;
+			align-items: flex-end;
+			justify-content: flex-end;
+			cursor: pointer;
+			color: $secondColor;
+			width: 2em;
+			height: 2em;
+			font-size: $iconSize;
+			transition: color .2s;
+
+			&:hover {
+				color: $thirdColor
+			}
+		}
+	}
+}
+
+.editorContainer {
+	top: 5em;
+	position: absolute;
+	font-size: 20px;
+	z-index: 11;
+	width: 100%;
+	pointer-events: none;
+
+	#editor {
+		position: relative;
+		min-height: 80vh;
+		width: 75%;
+		margin: auto;
+		outline: 0;
+		pointer-events: auto;
+	}
+}
+
+@import 'media';
