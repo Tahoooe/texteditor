@@ -10,10 +10,14 @@ body {
   margin: 0;
   overflow-x: hidden;
   background-color: #F2F2F2;
-  font-family: Avenir Next; }
+  font-family: Arial; }
 
 b {
-  font-family: Avenir Next Bold; }
+  font-family: Avenir Next Bold;
+  font-weight: 700; }
+
+.shown {
+  display: block !important; }
 
 #lightContainer {
   height: 100%;
@@ -49,7 +53,7 @@ b {
 #settingsPannel {
   position: fixed;
   box-sizing: border-box;
-  right: 0;
+  right: -320px;
   width: 320px;
   height: 100vh;
   padding: 0 1.5em;
@@ -58,6 +62,7 @@ b {
   color: #707070;
   box-shadow: 0px 1px 40px 1.5px rgba(0, 0, 0, 0.1);
   font-size: 1.2em;
+  transition: right .2s;
   /* label */
   /* case */
   /* coche */
@@ -73,7 +78,7 @@ b {
   #settingsPannel .label {
     display: block;
     margin-bottom: .3em; }
-  #settingsPannel #shareBox, #settingsPannel .writingMode, #settingsPannel .appearance, #settingsPannel .customFont {
+  #settingsPannel #shareBox, #settingsPannel .writingMode, #settingsPannel .appearance, #settingsPannel .customFont, #settingsPannel .toolPos {
     margin-bottom: 2em; }
   #settingsPannel #showWords, #settingsPannel #showTools, #settingsPannel #showCharacters {
     margin-bottom: 1.5em; }
@@ -101,7 +106,7 @@ b {
       cursor: pointer; }
       #settingsPannel #shareBox span svg {
         width: 15px; }
-  #settingsPannel .writingMode {
+  #settingsPannel .toggleContainer {
     z-index: 13;
     width: 100%;
     height: 48px;
@@ -112,75 +117,45 @@ b {
     border: 1px solid #707070;
     cursor: pointer;
     color: #707070; }
-    #settingsPannel .writingMode .pos {
+    #settingsPannel .toggleContainer .pos {
       width: 100%;
       z-index: 14;
       transition: .25s color ease; }
-    #settingsPannel .writingMode #choice {
+    #settingsPannel .toggleContainer .center {
+      border-left: 1px solid #707070;
+      border-right: 1px solid #707070; }
+    #settingsPannel .toggleContainer .choice {
       position: absolute;
       background-color: #707070;
       height: 48px;
       z-index: 12;
       transition: .25s left ease; }
-    #settingsPannel .writingMode.tgLeft #left {
+    #settingsPannel .toggleContainer.tgLeft .left {
       color: #F2F2F2; }
-    #settingsPannel .writingMode.tgLeft #right, #settingsPannel .writingMode.tgLeft #center {
+    #settingsPannel .toggleContainer.tgLeft .right, #settingsPannel .toggleContainer.tgLeft .center {
       color: #707070; }
-    #settingsPannel .writingMode.tgCenter #center {
+    #settingsPannel .toggleContainer.tgCenter .center {
       color: #F2F2F2; }
-    #settingsPannel .writingMode.tgCenter #right, #settingsPannel .writingMode.tgCenter #left {
+    #settingsPannel .toggleContainer.tgCenter .right, #settingsPannel .toggleContainer.tgCenter .left {
       color: #707070; }
-    #settingsPannel .writingMode.tgRight #right {
+    #settingsPannel .toggleContainer.tgRight .right {
       color: #F2F2F2; }
-    #settingsPannel .writingMode.tgRight #left, #settingsPannel .writingMode.tgRight #center {
+    #settingsPannel .toggleContainer.tgRight .left, #settingsPannel .toggleContainer.tgRight .center {
       color: #707070; }
-    #settingsPannel .writingMode #choice {
-      width: 50%; }
-    #settingsPannel .writingMode.tgLeft #choice {
-      left: 0; }
-    #settingsPannel .writingMode.tgRight #choice {
-      left: 50%; }
-  #settingsPannel #togglingThreeCtn {
-    z-index: 13;
-    width: 100%;
-    height: 48px;
-    line-height: 48px;
-    display: flex;
-    position: relative;
-    text-align: center;
-    border: 1px solid #707070;
-    cursor: pointer;
-    color: #707070; }
-    #settingsPannel #togglingThreeCtn .pos {
-      width: 100%;
-      z-index: 14;
-      transition: .25s color ease; }
-    #settingsPannel #togglingThreeCtn #choice {
-      position: absolute;
-      background-color: #707070;
-      height: 48px;
-      z-index: 12;
-      transition: .25s left ease; }
-    #settingsPannel #togglingThreeCtn.tgLeft #left {
-      color: #F2F2F2; }
-    #settingsPannel #togglingThreeCtn.tgLeft #right, #settingsPannel #togglingThreeCtn.tgLeft #center {
-      color: #707070; }
-    #settingsPannel #togglingThreeCtn.tgCenter #center {
-      color: #F2F2F2; }
-    #settingsPannel #togglingThreeCtn.tgCenter #right, #settingsPannel #togglingThreeCtn.tgCenter #left {
-      color: #707070; }
-    #settingsPannel #togglingThreeCtn.tgRight #right {
-      color: #F2F2F2; }
-    #settingsPannel #togglingThreeCtn.tgRight #left, #settingsPannel #togglingThreeCtn.tgRight #center {
-      color: #707070; }
-    #settingsPannel #togglingThreeCtn #choice {
-      width: 33.33%; }
-    #settingsPannel #togglingThreeCtn.tgLeft #choice {
-      left: 0; }
-    #settingsPannel #togglingThreeCtn.tgCenter #choice {
-      left: 33.33%; }
-    #settingsPannel #togglingThreeCtn.tgRight #choice {
-      left: 66.66%; }
+  #settingsPannel .writingMode .choice, #settingsPannel .toolPos .choice {
+    width: 50%; }
+  #settingsPannel .writingMode.tgLeft .choice, #settingsPannel .toolPos.tgLeft .choice {
+    left: 0; }
+  #settingsPannel .writingMode.tgRight .choice, #settingsPannel .toolPos.tgRight .choice {
+    left: 50%; }
+  #settingsPannel .appearance .choice {
+    width: 33.33%; }
+  #settingsPannel .appearance.tgLeft .choice {
+    left: 0; }
+  #settingsPannel .appearance.tgCenter .choice {
+    left: 33.33%; }
+  #settingsPannel .appearance.tgRight .choice {
+    left: 66.66%; }
   #settingsPannel .checkContainer {
     position: relative; }
   #settingsPannel [type="checkbox"]:not(:checked), #settingsPannel [type="checkbox"]:checked {
@@ -254,6 +229,8 @@ b {
     justify-content: space-between; }
     #settingsPannel .customFont #fontLabel {
       line-height: 2.5em; }
+  #settingsPannel.revealed {
+    right: 0px; }
 
 .toolboxContainer {
   z-index: 5;
@@ -266,7 +243,8 @@ b {
   grid-gap: 0px 0px;
   grid-template-areas: "top top top" "left toolbox right" "bottom bottom bottom"; }
   .toolboxContainer .toolbox {
-    width: 100%; }
+    width: 100%;
+    display: none; }
     .toolboxContainer .toolbox .tool {
       cursor: pointer;
       border: 4px solid #F2F2F2;
@@ -321,9 +299,17 @@ b {
   .toolboxContainer .bottom {
     grid-area: bottom;
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between; }
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-flow: column; }
     .toolboxContainer .bottom #wordCounter {
+      display: none;
+      color: #707070;
+      margin-left: 1.4em;
+      margin-bottom: 1em; }
+    .toolboxContainer .bottom #characterCounter {
+      display: none;
+      color: #707070;
       margin-left: 1.4em;
       margin-bottom: 1em; }
 
@@ -340,4 +326,90 @@ b {
     width: 75%;
     margin: auto;
     outline: 0;
-    pointer-events: auto; }
+    pointer-events: auto;
+    color: black; }
+
+body.dark {
+  background-color: #0D0D0D; }
+  body.dark #lightContainer #light {
+    background: radial-gradient(ellipse at center, rgba(194, 194, 194, 0.5) 0%, rgba(194, 194, 194, 0) 50%); }
+  body.dark #openSettings {
+    color: #C2C2C2;
+    transition: color .2s; }
+    body.dark #openSettings:hover {
+      color: white; }
+  body.dark #settingsPannel {
+    background-color: black;
+    color: #C2C2C2;
+    /* case */
+    /* coche */
+    /* Style the arrow inside the select element: */
+    /* style the items (options), including the selected item: */
+    /* Style items (options): */ }
+    body.dark #settingsPannel #shareBox #share {
+      background-color: #0D0D0D;
+      color: #C2C2C2; }
+    body.dark #settingsPannel .toggleContainer {
+      border: 1px solid #C2C2C2;
+      color: #C2C2C2; }
+      body.dark #settingsPannel .toggleContainer .center {
+        border-left: 1px solid #C2C2C2;
+        border-right: 1px solid #C2C2C2; }
+      body.dark #settingsPannel .toggleContainer .choice {
+        background-color: #C2C2C2; }
+      body.dark #settingsPannel .toggleContainer.tgLeft .left {
+        color: #0D0D0D; }
+      body.dark #settingsPannel .toggleContainer.tgLeft .right, body.dark #settingsPannel .toggleContainer.tgLeft .center {
+        color: #C2C2C2; }
+      body.dark #settingsPannel .toggleContainer.tgCenter .center {
+        color: #0D0D0D; }
+      body.dark #settingsPannel .toggleContainer.tgCenter .right, body.dark #settingsPannel .toggleContainer.tgCenter .left {
+        color: #C2C2C2; }
+      body.dark #settingsPannel .toggleContainer.tgRight .right {
+        color: #0D0D0D; }
+      body.dark #settingsPannel .toggleContainer.tgRight .left, body.dark #settingsPannel .toggleContainer.tgRight .center {
+        color: #C2C2C2; }
+    body.dark #settingsPannel [type="checkbox"]:not(:checked) + label:before, body.dark #settingsPannel [type="checkbox"]:checked + label:before {
+      border: 1px solid #C2C2C2; }
+    body.dark #settingsPannel [type="checkbox"]:not(:checked) + label:before {
+      color: black; }
+    body.dark #settingsPannel [type="checkbox"]:checked + label:before {
+      background: #C2C2C2; }
+    body.dark #settingsPannel [type="checkbox"]:not(:checked) + label:after, body.dark #settingsPannel [type="checkbox"]:checked + label:after {
+      content: url(../images/d_check.svg); }
+    body.dark #settingsPannel .select-selected {
+      background-color: #0D0D0D; }
+    body.dark #settingsPannel .select-selected:after {
+      content: url(../images/arrowdown.svg); }
+    body.dark #settingsPannel .select-items div, body.dark #settingsPannel .select-selected {
+      color: #C2C2C2;
+      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent; }
+    body.dark #settingsPannel .selectInside {
+      border: 1px solid #C2C2C2; }
+    body.dark #settingsPannel .select-items {
+      background-color: #0D0D0D; }
+    body.dark #settingsPannel .select-items > div:nth-child(1), body.dark #settingsPannel .select-items > div:nth-child(2), body.dark #settingsPannel .select-items > div:nth-child(3), body.dark #settingsPannel .select-items > div:nth-child(4), body.dark #settingsPannel .select-items > div:nth-child(5) {
+      border-top: 1px solid #C2C2C2; }
+    body.dark #settingsPannel .select-items div:hover, body.dark #settingsPannel .same-as-selected {
+      background-color: black; }
+  body.dark .toolboxContainer .toolbox .tool {
+    border: 4px solid #0D0D0D;
+    transition: background-color .2s;
+    color: #C2C2C2; }
+    body.dark .toolboxContainer .toolbox .tool:after {
+      background-color: #0D0D0D; }
+    body.dark .toolboxContainer .toolbox .tool:hover {
+      background-color: #C2C2C2;
+      color: white; }
+  body.dark .toolboxContainer .mask {
+    background: #0D0D0D; }
+  body.dark .toolboxContainer .top #fullscreenButton {
+    color: #C2C2C2; }
+    body.dark .toolboxContainer .top #fullscreenButton:hover {
+      color: white; }
+  body.dark .toolboxContainer .bottom #wordCounter {
+    color: #C2C2C2; }
+  body.dark .toolboxContainer .bottom #characterCounter {
+    color: #C2C2C2; }
+  body.dark .editorContainer #editor {
+    color: white; }

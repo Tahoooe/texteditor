@@ -146,18 +146,17 @@ editor.addEventListener("input", function() {
 }, false);
 
 
-// function checkFullscreen() {
-// 	if (window.fullscreen) {
-// 		fullscreenButton.classList.add('fa-close');
-// 		fullscreenButton.classList.remove('fa-expand');
-// 	} else {
-// 		fullscreenButton.classList.remove('fa-close');
-// 		fullscreenButton.classList.add('fa-expand');
-// 	}
-// }
-// checkFullscreen();
-
-
+document.getElementById("fullscreenButton").onclick = function(){ 
+	if (document.fullscreenElement) { 
+		document.exitFullscreen() 
+		fullscreenButton.classList.remove('fa-close');
+		fullscreenButton.classList.add('fa-expand');
+	} else { 
+		document.documentElement.requestFullscreen()
+		fullscreenButton.classList.add('fa-close');
+		fullscreenButton.classList.remove('fa-expand');
+	} 
+};
 
 //joli toggle 
 function toggle(toggling, target) {
@@ -177,13 +176,35 @@ function toggle(toggling, target) {
 	}
 }
 
+const toggles = document.getElementsByClassName("toggleContainer");
 function initToggle() {
-	document.getElementById("togglingTwoCtn").classList.add("tgLeft");
-	document.getElementById("togglingThreeCtn").classList.add("tgLeft");
+	for(var i = 0; i < toggles.length; i++) {
+    	toggles[i].classList.add('tgLeft');
+	}
 }
 initToggle();
 
 
+
+
+function checkboxes(check) {
+
+	if (check.checked && check.id === "words") {
+		document.getElementById("wordCounter").classList.add("shown");
+	} else if (!check.checked && check.id === "words") {
+		document.getElementById("wordCounter").classList.remove("shown");
+
+	} else if (check.checked && check.id === "characters") {
+		document.getElementById("characterCounter").classList.add("shown");
+	} else if (!check.checked && check.id === "characters") {
+		document.getElementById("characterCounter").classList.remove("shown");
+
+	} else if (check.checked && check.id === "tools") {
+		document.getElementById("toolbox").classList.add("shown");
+	} else if (!check.checked && check.id === "tools") {
+		document.getElementById("toolbox").classList.remove("shown");
+	}
+}
 
 
 
@@ -217,13 +238,24 @@ for (i = 0; i < x.length; i++) {
         for (i = 0; i < s.length; i++) {
           if (s.options[i].innerHTML == this.innerHTML) {
             s.selectedIndex = i;
+
             h.innerHTML = this.innerHTML;
             y = this.parentNode.getElementsByClassName("same-as-selected");
             for (k = 0; k < y.length; k++) {
               y[k].removeAttribute("class");
             }
             this.setAttribute("class", "same-as-selected");
+
+
+           
+	        let selectFont = document.getElementById("selectFont").value;
+			changeFont(selectFont);
+			console.log("font changée");
+
+
             break;
+
+
           }
         }
         h.click();
@@ -264,3 +296,71 @@ function closeAllSelect(elmnt) {
 /* If the user clicks anywhere outside the select box,
 then close all select boxes: */
 document.addEventListener("click", closeAllSelect); 
+
+
+
+function changeFont(selectedFont) {
+	if (selectedFont === "Courier New") {
+		let courier_new = new FontFace('Courier New', 'url(src/fonts/CourierNew.woff)', { style: 'normal', weight: 400 });
+
+		courier_new.load().then(function(loaded_face) {
+			document.fonts.add(loaded_face);
+		  	document.body.style.fontFamily = '"Courier New"';
+			let currentFont = courier_new;
+
+		}).catch(function(error) {
+			console.log("Can't load font");
+		});
+	}
+}
+
+document.getElementById("openSettings").onclick = function(){
+	document.getElementById("settingsPannel").classList.toggle("revealed");
+};
+
+// object.addEventListener("click", myScript);
+// document.getElementById("openSettings").addEventListener("click", function {
+// 	document.getElementById("settingsPannel").classList.add("shown");
+// });
+
+
+
+// let currentFont;
+
+// document.getElementById("fontSelector").onchange = function() {
+//     // changeFont(this.value);
+//     console.log(bite);
+// }
+
+// function changeFont(selectedFont) {
+// 	if (selectedFont === "Courier New") {
+// 		let courier_new = new FontFace('Courier New', 'url(src/fonts/CourierNew.woff)', { style: 'normal', weight: 400 });
+
+// 		courier_new.load().then(function(loaded_face) {
+// 			document.fonts.add(loaded_face);
+// 		  	document.body.style.fontFamily = '"Courier New"';
+// 			currentFont = courier_new;
+
+// 		}).catch(function(error) {
+// 			console.log("Can't load font");
+// 		});
+// 	}
+// }
+
+
+// let selectedFont = document.getElementById("selectedFont");
+// attribue la value du select en argument de la fonction 
+// selectedFont.onchange = function() {
+//     console.log("test");
+// }
+
+
+
+// let courier_new = new FontFace('courier New', 'url(src/fonts/courierNew.woff)', { style: 'regular', weight: 400 });
+
+// courier_new.load().then(function(loaded_face) {
+// 	document.fonts.add(loaded_face);
+//   	document.body.style.fontFamily = "courier New";
+// }).catch(function(error) {
+// 	console.log("Can't load font");
+// });

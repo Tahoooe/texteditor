@@ -4,11 +4,19 @@ body {
 	margin: 0;
 	overflow-x: hidden;
 	background-color: $mainColor;
-	font-family: $mainFont;
+	font-family: Arial;
 }
 
 b {
 	font-family: $mainFontBold;
+	font-weight: 700;
+}
+
+// à changer en none pour que les checkboxes marchent
+$hidden : none;
+
+.shown {
+	display: block!important;
 }
 
 #lightContainer {
@@ -51,15 +59,16 @@ b {
 #settingsPannel {
 	position: fixed;
 	box-sizing: border-box;
-	right: 0;
+	right: -320px;
 	width: 320px;
 	height: 100vh;
 	padding: 0 1.5em;
-	background-color: white;
+	background-color: $settingsColor;
 	z-index: 90;
 	color: $secondColor;
 	box-shadow: 0px 1px 40px 1.5px rgba(0, 0, 0, 0.1);
 	font-size: 1.2em;
+	transition: right .2s;
 
 	h3 {
 		margin-top: 2em;
@@ -71,7 +80,7 @@ b {
 		margin-bottom: .3em;
 	}
 
-	#shareBox, .writingMode, .appearance, .customFont {
+	#shareBox, .writingMode, .appearance, .customFont, .toolPos {
 		margin-bottom: 2em;
 	}
 
@@ -111,38 +120,38 @@ b {
 	    }
 	}
 
-	.writingMode {
-	    @include toggleContainer;
+	.toggleContainer {
+		@include toggleContainer;
+	}
 
-	    #choice {
+	.writingMode, .toolPos {
+	    .choice {
 	        width: 50%;
 	    }
 
-	    &.tgLeft #choice {
+	    &.tgLeft .choice {
 	        left: 0;
 	    }
 
-	    &.tgRight #choice {
+	    &.tgRight .choice {
 	        left: 50%;
 	    }
 	}
 
-	#togglingThreeCtn {
-	    @include toggleContainer;
-
-	    #choice {
+	.appearance {
+	    .choice {
 	        width: 33.33%;
 	    }
 
-	    &.tgLeft #choice {
+	    &.tgLeft .choice {
 	        left: 0;
 	    }
 
-	    &.tgCenter #choice {
+	    &.tgCenter .choice {
 	        left: 33.33%;
 	    }
 
-	    &.tgRight #choice {
+	    &.tgRight .choice {
 	        left: 66.66%;
 	    }
 	}
@@ -159,6 +168,10 @@ b {
 			line-height: 2.5em;
 		}
 	}
+
+	&.revealed {
+		right: 0px;
+	}
 }
 
 .toolboxContainer {
@@ -174,6 +187,7 @@ b {
 
 	.toolbox {
 		width: 100%;
+		display: $hidden;
 
 		.tool {
 			cursor: pointer;
@@ -250,15 +264,25 @@ b {
 	.bottom {
 		grid-area: bottom;
 		display: flex;
-		align-items: flex-end;
-		justify-content: space-between;
+		align-items: flex-start;
+		justify-content: flex-end;
+		flex-flow: column;
+
 
 		#wordCounter {
+			display: $hidden;
+			color: $secondColor;
 			margin-left: 1.4em;
 			margin-bottom: 1em;
 		}
 
-
+		#characterCounter {
+			display: $hidden;
+			color: $secondColor;
+			margin-left: 1.4em;
+			margin-bottom: 1em;
+			
+		}
 	}
 }
 
@@ -277,7 +301,12 @@ b {
 		margin: auto;
 		outline: 0;
 		pointer-events: auto;
+		color: $thirdColor;
 	}
 }
+
+
+
+
 
 @import 'media';

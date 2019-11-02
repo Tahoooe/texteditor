@@ -1,0 +1,87 @@
+body.dark {
+	background-color: $d_mainColor;
+
+	#lightContainer {
+		#light {
+			background: radial-gradient(ellipse at center, rgba($d_secondColor, .5) 0%, rgba($d_secondColor,0) 50%);
+		}
+	}
+
+	#openSettings {
+		color: $d_secondColor;
+		transition: color .2s;
+
+		&:hover {
+			color: $d_thirdColor
+		}
+	}
+
+	#settingsPannel {
+		background-color: $d_settingsColor;
+		color: $d_secondColor;
+
+		#shareBox {
+		    #share {
+		        background-color: $d_mainColor;
+		        color: $d_secondColor;
+		    }
+		}
+
+		.toggleContainer {
+			@include d_toggleContainer;
+		}
+
+		@include d_checkbox;
+		@include d_customSelect;
+
+	}
+
+	.toolboxContainer {
+		.toolbox {
+			.tool {
+				border: 4px solid $d_mainColor;
+				transition: background-color .2s;
+				color: $d_secondColor;
+
+				&:after {
+					background-color: $d_mainColor;
+				}
+
+				&:hover {
+					background-color: $d_secondColor;
+					color: $d_thirdColor;
+				}
+			}
+		}
+
+		.mask {
+			background: $d_mainColor;
+		}
+
+		.top {
+			#fullscreenButton {
+				color: $d_secondColor;
+
+				&:hover {
+					color: $d_thirdColor
+				}
+			}
+		}
+
+		.bottom {
+			#wordCounter {
+				color: $d_secondColor;
+			}
+
+			#characterCounter {
+				color: $d_secondColor;	
+			}
+		}
+	}
+
+	.editorContainer {
+		#editor {
+			color: $d_thirdColor;
+		}
+	}
+}

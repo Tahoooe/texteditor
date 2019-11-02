@@ -9,8 +9,23 @@
 }
 
 $mainColor : #F2F2F2;
+$d_mainColor: #0D0D0D;
+
 $secondColor : #707070;
+$d_secondColor : #C2C2C2;
+
 $thirdColor: black;
+$d_thirdColor: white;
+
+$settingsColor: white;
+$d_settingsColor: black;
+
+// $mainColor : #F2F2F2, #0D0D0D;
+// $secondColor : #707070, #595959;
+// $thirdColor: black, white;
+
+// $lightCenter : rgba(#707070, .5) 0%, yellow;
+// $lightAround : rgba(#707070, 0) 50%, coral;
 
 $mainFont: Avenir Next;
 $mainFontBold : Avenir Next Bold;
@@ -36,7 +51,12 @@ $inputHeight: 48px;
         transition: .25s color ease;
     }
 
-    #choice {
+    .center {
+    	border-left: 1px solid $secondColor;
+    	border-right: 1px solid $secondColor;
+    }
+
+    .choice {
         position: absolute;
         background-color: $secondColor;
         height: $inputHeight;
@@ -45,33 +65,78 @@ $inputHeight: 48px;
     }
 
     &.tgLeft {
-        #left {
+        .left {
             color: $mainColor;  
         }
 
-        #right, #center {
+        .right, .center {
             color: $secondColor;
         }
     }
 
     &.tgCenter {
-        #center {
+        .center {
             color: $mainColor;  
         }
 
-        #right, #left {
+        .right, .left {
             color: $secondColor;
         }
 
     }
 
     &.tgRight {
-        #right {
+        .right {
             color: $mainColor;  
         }
 
-        #left, #center {
+        .left, .center {
             color: $secondColor;
+        }
+    }
+}
+
+@mixin d_toggleContainer {
+    border: 1px solid $d_secondColor;
+    color: $d_secondColor;
+
+    .center {
+    	border-left: 1px solid $d_secondColor;
+    	border-right: 1px solid $d_secondColor;
+    }
+
+    .choice {
+        background-color: $d_secondColor;
+    }
+
+    &.tgLeft {
+        .left {
+            color: $d_mainColor;  
+        }
+
+        .right, .center {
+            color: $d_secondColor;
+        }
+    }
+
+    &.tgCenter {
+        .center {
+            color: $d_mainColor;  
+        }
+
+        .right, .left {
+            color: $d_secondColor;
+        }
+
+    }
+
+    &.tgRight {
+        .right {
+            color: $d_mainColor;  
+        }
+
+        .left, .center {
+            color: $d_secondColor;
         }
     }
 }
@@ -109,7 +174,7 @@ $inputHeight: 48px;
 	}
 
 	[type="checkbox"]:not(:checked) + label:before {
-	    color: white;
+	    color: $settingsColor;
 	}
 
 	[type="checkbox"]:checked + label:before {
@@ -125,6 +190,27 @@ $inputHeight: 48px;
 	    top: .4em;
 	    right: .24em;
 	    cursor: pointer;
+	}
+}
+
+@mixin d_checkbox {
+
+	/* case */
+	[type="checkbox"]:not(:checked) + label:before, [type="checkbox"]:checked + label:before {
+	    border: 1px solid $d_secondColor;
+	}
+
+	[type="checkbox"]:not(:checked) + label:before {
+	    color: $d_settingsColor;
+	}
+
+	[type="checkbox"]:checked + label:before {
+	    background: $d_secondColor;
+	}
+
+	/* coche */
+	[type="checkbox"]:not(:checked) + label:after, [type="checkbox"]:checked + label:after {
+	    content: url(../images/d_check.svg);
 	}
 }
 
@@ -189,6 +275,41 @@ $inputHeight: 48px;
 	}
 
 	.select-items div:hover, .same-as-selected {
-	  background-color: white;
+	  background-color: $settingsColor;
+	}
+}
+
+@mixin d_customSelect {
+
+	.select-selected {
+	  background-color: $d_mainColor;
+	}
+
+	/* Style the arrow inside the select element: */
+	.select-selected:after {
+	    content: url(../images/arrowdown.svg);
+	}
+
+	/* style the items (options), including the selected item: */
+	.select-items div,.select-selected {
+	  color: $d_secondColor;
+	  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	}
+
+	.selectInside {
+	    border: 1px solid $d_secondColor;
+	}
+
+	/* Style items (options): */
+	.select-items {
+	  background-color: $d_mainColor;
+	}
+
+	.select-items > div:nth-child(1), .select-items > div:nth-child(2), .select-items > div:nth-child(3), .select-items > div:nth-child(4), .select-items > div:nth-child(5) {
+	    border-top: 1px solid $d_secondColor;
+	}
+
+	.select-items div:hover, .same-as-selected {
+	  background-color: $d_settingsColor;
 	}
 }

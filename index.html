@@ -10,12 +10,13 @@
 
 	<link rel="stylesheet" href="src/css/style.css">
 </head>
-<body>
+<body class="dark">
 
-<span id="openSettings" class="fa fa-cog" onclick=""></span>
+<span id="openSettings" class="fa fa-cog" onclick="checkFont()"></span>
 
 <div id="settingsPannel">
 	<h3>Settings</h3>
+	
 	
 	<span class="label">Share</span>
 	<div id="shareBox">
@@ -26,33 +27,40 @@
 	</div>
 	
 	<span class="label">Writing mode</span>
-	<div id="togglingTwoCtn"  class="togglerContainer writingMode">
-		<div class="pos" id="left"  onclick="toggle('left',this)">Classic</div>
-		<div class="pos" id="right" onclick="toggle('right',this)">Markdown</div>
-		<div id="choice"></div>
+	<div class="writingMode toggleContainer">
+		<div class="pos left" onclick="toggle('left',this)">Classic</div>
+		<div class="pos right" onclick="toggle('right',this)">Markdown</div>
+		<div class="choice"></div>
+	</div>
+
+	<span class="label">Tool pannel position</span>
+	<div class="toggleContainer toolPos">
+		<div class="pos left" onclick="toggle('left',this)">Left</div>
+		<div class="pos right" onclick="toggle('right',this)">Right</div>
+		<div class="choice"></div>
 	</div>
 
 	<span class="label">Appearance</span>
-	<div id="togglingThreeCtn" class="togglerContainer appearance">
-		<div class="pos" id="left" onclick="toggle('left',this)">Light</div>
-		<div class="pos" id="center" onclick="toggle('center',this)">Auto</div>
-		<div class="pos" id="right" onclick="toggle('right',this)">Dark</div>
+	<div class="toggleContainer appearance">
+		<div class="pos left" onclick="toggle('left',this)">Light</div>
+		<div class="pos center" onclick="toggle('center',this)">Auto</div>
+		<div class="pos right" onclick="toggle('right',this)">Dark</div>
 
-		<div id="choice"></div>
+		<div class="choice"></div>
 	</div>
 
 	<p id="showWords">
-		<input type="checkbox" id="words" />
+		<input type="checkbox" id="words" onclick="checkboxes(this)" />
 		<label for="words" aria-describedby="label">Number of words</label>
 	</p>
 
 	<p id="showCharacters">
-		<input type="checkbox" id="characters" />
+		<input type="checkbox" id="characters" onclick="checkboxes(this)"/>
 		<label for="characters" aria-describedby="label">Number of characters</label>
 	</p>
 
 	<p id="showTools">
-		<input type="checkbox" id="tools" />
+		<input type="checkbox" id="tools" onclick="checkboxes(this)"/>
 		<label for="tools" aria-describedby="label">Always show tools</label>
 	</p>
 
@@ -60,13 +68,13 @@
 		<div id="fontLabel">Font</div>
 
 		<div class="custom-select" style="width:200px;">
-			<select>
-				<option value="1">Avenir Next</option>
-				<option value="2" class="selectInside">Helvetica Neue</option>
-				<option value="3" class="selectInside">Courier New</option>
-				<option value="4" class="selectInside">Open Sans</option>
+			<select id="selectFont" onchange='alert("changed")'>
+				<option value="Avenir Next">Avenir Next</option>
+				<option value="Courier New">Courier New</option>
+<!-- 			<option value="2">Helvetica Neue</option>
+				<option value="4" selected>Open Sans</option>
 				<option value="5">Palatino</option>
-				<option value="5">Comic Neue</option>
+				<option value="5">Comic Neue</option> -->
 			</select>
 		</div>
 	</div>
@@ -74,12 +82,12 @@
 
 <div class="toolboxContainer">
 	<div class="mask top">
-		<span id="fullscreenButton" class="fa fa-expand" onclick="fullScreen();"></span>
+		<span id="fullscreenButton" class="fa fa-expand"></span>
 	</div>
 
 	<div class="mask left"></div>
 
-	<div class="toolbox">
+	<div class="toolbox" id="toolbox">
 		
 		<div class="tool" onclick="mkHeader();">
 			<span class="fa fa-header"></span>
@@ -137,6 +145,7 @@
 	<div class="mask right"></div>
 	<div class="mask bottom">
 		<div id="wordCounter"></div>
+		<div id="characterCounter">20 caractères</div>
 	</div>
 </div>
 
