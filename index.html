@@ -10,13 +10,12 @@
 
 	<link rel="stylesheet" href="src/css/style.css">
 </head>
-<body class="dark">
+<body>
 
 <span id="openSettings" class="fa fa-cog" onclick="checkFont()"></span>
 
-<div id="settingsPannel">
+<div id="settingsPannel" class="revealed">
 	<h3>Settings</h3>
-	
 	
 	<span class="label">Share</span>
 	<div id="shareBox">
@@ -26,25 +25,25 @@
 	    </span>
 	</div>
 	
-	<span class="label">Writing mode</span>
+<!-- 	<span class="label">Writing mode</span>
 	<div class="writingMode toggleContainer">
-		<div class="pos left" onclick="toggle('left',this)">Classic</div>
-		<div class="pos right" onclick="toggle('right',this)">Markdown</div>
+		<div class="pos left" onclick="toggleBase('left',this)">Classic</div>
+		<div class="pos right" onclick="toggleBase('right',this)">Markdown</div>
 		<div class="choice"></div>
-	</div>
+	</div> -->
 
 	<span class="label">Tool pannel position</span>
 	<div class="toggleContainer toolPos">
-		<div class="pos left" onclick="toggle('left',this)">Left</div>
-		<div class="pos right" onclick="toggle('right',this)">Right</div>
+		<div class="pos left" onclick="toggleBase('left',this)">Left</div>
+		<div class="pos right" onclick="toggleBase('right',this)">Right</div>
 		<div class="choice"></div>
 	</div>
 
 	<span class="label">Appearance</span>
 	<div class="toggleContainer appearance">
-		<div class="pos left" onclick="toggle('left',this)">Light</div>
-		<div class="pos center" onclick="toggle('center',this)">Auto</div>
-		<div class="pos right" onclick="toggle('right',this)">Dark</div>
+		<div class="pos left" onclick="toggleBase('left',this)">Light</div>
+		<div class="pos center" onclick="toggleBase('center',this)">Auto</div>
+		<div class="pos right" onclick="toggleBase('right',this)">Dark</div>
 
 		<div class="choice"></div>
 	</div>
@@ -67,17 +66,32 @@
 	<div class="customFont">
 		<div id="fontLabel">Font</div>
 
-		<div class="custom-select" style="width:200px;">
-			<select id="selectFont" onchange='alert("changed")'>
-				<option value="Avenir Next">Avenir Next</option>
-				<option value="Courier New">Courier New</option>
-<!-- 			<option value="2">Helvetica Neue</option>
-				<option value="4" selected>Open Sans</option>
-				<option value="5">Palatino</option>
-				<option value="5">Comic Neue</option> -->
-			</select>
+		<div class="dropdown">
+		<div id="selectBtn" onclick="myFunction()">
+			<img class="avenirnext" src="src/images/avenirnext.svg">
+			<img class="helveticaneue" src="src/images/helveticaneue.svg">
+			<img class="couriernew" src="src/images/courriernew.svg">
+		</div>
+
+		<div id="myDropdown" class="dropdown-content">
+			<div class="fontChoice" id="AvenirNext" onclick="select(this)">
+				<img src="src/images/avenirnext.svg">
+			</div>
+
+			<div class="fontChoice" id="HelveticaNeue" onclick="select(this)">
+				<img src="src/images/helveticaneue.svg">
+			</div>
+
+			<div class="fontChoice" id="CourierNew" onclick="select(this)">
+				<img src="src/images/courriernew.svg">
+			</div>
 		</div>
 	</div>
+
+
+	</div>
+
+	
 </div>
 
 <div class="toolboxContainer">
@@ -89,55 +103,55 @@
 
 	<div class="toolbox" id="toolbox">
 		
-		<div class="tool" onclick="mkHeader();">
+		<div class="tool" onclick='format("header");'>
 			<span class="fa fa-header"></span>
 		</div>
 
-		<div class="tool" onclick="mkUnderline();">
+		<div class="tool" onclick="format('underline');">
 			<span class="fa fa-underline"></span>
 		</div>
 
-		<div class="tool" onclick="mkBold();">
+		<div class="tool" onclick="format('bold');">
 			<span class="fa fa-bold"></span>
 		</div>
 
-		<div class="tool" onclick="mkStrikethrough();">
+		<div class="tool" onclick="format('strikethrough');">
 			<span class="fa fa-strikethrough"></span>
 		</div>
 
-		<div class="tool" onclick="mkAlignCenter();">
+		<div class="tool" onclick="format('alignCenter');">
 			<span class="fa fa-align-center"></span>
 		</div>
 
-		<div class="tool" onclick="mkJustify();">
+		<div class="tool" onclick="format('justify');">
 			<span class="fa fa-align-justify"></span>
 		</div>
 
-		<div class="tool" onclick="mkAlignLeft();">
+		<div class="tool" onclick="format('alignLeft');">
 			<span class="fa fa-align-left"></span>
 		</div>
 
-		<div class="tool" onclick="mkAlignRight();">
+		<div class="tool" onclick="format('alignRight');">
 			<span class="fa fa-align-right"></span>
 		</div>
 
-		<div class="tool" onclick="mkQuote();">
+		<div class="tool" onclick="format('quote');">
 			<span class="fa fa-quote-left"></span>
 		</div>
 
-		<div class="tool" onclick="mkOrderedList();">
+		<div class="tool" onclick="format('orderedList');">
 			<span class="fa fa-list-ol"></span>
 		</div>
 
-		<div class="tool" onclick="mkUnorderedList();">
+		<div class="tool" onclick="format('unorderedList');">
 			<span class="fa fa-list-ul"></span>
 		</div>
 
-		<div class="tool" onclick="mkLink();">
+		<div class="tool" onclick="format('link');">
 			<span class="fa fa-link"></span>
 		</div>
 
-		<div class="tool" onclick="mkUnlink();">
+		<div class="tool" onclick="format('unlink');">
 			<span class="fa fa-unlink"></span>
 		</div>
 	</div>

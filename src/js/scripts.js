@@ -8,8 +8,7 @@ document.addEventListener('mousemove', e => {
   	light.style.left = e.pageX + "px"  
 })
 
-
-
+// rich editor formating
 const editor = document.getElementById("editor");
 
 
@@ -65,61 +64,58 @@ function mkUnlink() {
 	document.execCommand('unlink',false,'');
 }
 
-
 document.addEventListener("keydown", function(key) {
 	if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey)  && key.keyCode == 72) {
 	  	key.preventDefault();
-	    mkHeader(); // cmd/ctrl + h
+	    format("header"); // cmd/ctrl + h
 
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey)  && key.keyCode == 66){
 		key.preventDefault();
-		mkBold(); // cmd/ctrl + b
+		format("bold"); // cmd/ctrl + b
 
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey)  && key.keyCode == 85) {
 		key.preventDefault();
-		mkUnderline(); // cmd/ctrl + u
+		format("underline"); // cmd/ctrl + u
 	
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey)  && key.keyCode == 53) {
 		key.preventDefault();
-		mkStrikethrough(); // cmd/ctrl + 5
+		format("strikethrough"); // cmd/ctrl + 5
 	
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey)  && key.keyCode == 69) {
 		key.preventDefault();
-		mkAlignCenter(); // cmd/ctrl + e
+		format("alignCenter"); // cmd/ctrl + e
 	
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey)  && key.keyCode == 74) {
 		key.preventDefault();
-		mkJustify(); // cmd/ctrl + j
+		format("justify"); // cmd/ctrl + j
 	
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey)  && key.keyCode == 76) {
 		key.preventDefault();
-		mkAlignLeft(); // cmd/ctrl + l
+		format("alignLeft"); // cmd/ctrl + l
 
 	// } else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey)  && key.keyCode == 82) {
 	// 	key.preventDefault();
-	// 	mkAlignRight(); // cmd/ctrl + r
+	// 	format("alignRight"); // cmd/ctrl + r
 
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey) && event.altKey && key.keyCode == 81) {
 		key.preventDefault();
-		mkQuote(); // cmd/ctrl + alt + q
+		format("quote"); // cmd/ctrl + alt + q
 
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey) && key.keyCode == 75) {
 		key.preventDefault();
-		mkUnorderedList(); // cmd/ctrl + k
+		format("unorderedList"); // cmd/ctrl + k
 
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey) && key.keyCode == 79) {
 		key.preventDefault();
-		mkOrderedList(); // cmd/ctrl + o
+		format("orderedList"); // cmd/ctrl + o
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey) && key.keyCode == 73) {
 		key.preventDefault();
-		mkLink(); // cmd/ctrl + i
+		format("link"); // cmd/ctrl + i
 	} else if ((window.navigator.platform.match("Mac") ? key.metaKey : key.ctrlKey) && key.keyCode == 89) {
 		key.preventDefault();
-		mkUnlink(); // cmd/ctrl + y
+		format("unlink"); // cmd/ctrl + y
 	}
-
 }, false);
-
 
 function countWords(str) {
 	if (str === "") {
@@ -129,6 +125,7 @@ function countWords(str) {
 	}
 }
 
+// words and characters counter
 const wordCounter = document.getElementById("wordCounter");
 
 let editorContent = editor.textContent;
@@ -145,7 +142,7 @@ editor.addEventListener("input", function() {
 
 }, false);
 
-
+// full screen option
 document.getElementById("fullscreenButton").onclick = function(){ 
 	if (document.fullscreenElement) { 
 		document.exitFullscreen() 
@@ -158,24 +155,58 @@ document.getElementById("fullscreenButton").onclick = function(){
 	} 
 };
 
-//joli toggle 
-function toggle(toggling, target) {
+// open settings button
+document.getElementById("openSettings").onclick = function(){
+	document.getElementById("settingsPannel").classList.toggle("revealed");
+};
+
+//base for all toggles 
+function toggleBase(toggling, target) {
 	let parent = target.parentElement;
 	parent.classList.remove("tgLeft", "tgCenter", "tgRight");
 
 	switch (toggling) {
 		case "left":
 			parent.classList.add("tgLeft");
+			toggle(parent, toggling);
 			break;
+
 		case "center":
 			parent.classList.add("tgCenter");
+			toggle(parent, toggling);
 			break;
+
 		case "right":
 			parent.classList.add("tgRight");
+			toggle(parent, toggling);
 			break;
 	}
 }
 
+// gives toggle a job
+function toggle(type, pos) {
+	if (type.classList.contains("toolPos") || type === "toolPos") {
+		if (pos === "left") {
+			console.log("tools à gauche");
+		} else if (pos === "right") {
+			console.log("tools à droite");
+		}
+
+	} else if (type.classList.contains("appearance") || type === "appearance") {
+		if (pos === "left") {
+			document.body.classList.remove('dark', 'autodark');
+		} else if (pos === "center") {
+			document.body.classList.add("autodark");
+		} else if (pos === "right") {
+			document.body.classList.add("dark");
+		}
+
+	} else {
+		console.log("marche pas");
+	}
+}
+
+// for toggles to start properly
 const toggles = document.getElementsByClassName("toggleContainer");
 function initToggle() {
 	for(var i = 0; i < toggles.length; i++) {
@@ -184,9 +215,7 @@ function initToggle() {
 }
 initToggle();
 
-
-
-
+// gives checkboxes a job
 function checkboxes(check) {
 
 	if (check.checked && check.id === "words") {
@@ -201,166 +230,83 @@ function checkboxes(check) {
 
 	} else if (check.checked && check.id === "tools") {
 		document.getElementById("toolbox").classList.add("shown");
+		document.getElementById("lightContainer").classList.add("shown");
 	} else if (!check.checked && check.id === "tools") {
 		document.getElementById("toolbox").classList.remove("shown");
+		document.getElementById("lightContainer").classList.remove("shown");
 	}
 }
 
 
 
 
+const selectBtn = document.getElementById("selectBtn");
+function select(choice) {
+	let fontName;
 
+	// Détermine si select() est appelé avec une string ou un objet par le HTML
+	if (typeof choice == 'string' || choice instanceof String) {
+		fontName = choice;
 
-var x, i, j, selElmnt, a, b, c;
-/* Look for any elements with the class "custom-select": */
-x = document.getElementsByClassName("custom-select");
-for (i = 0; i < x.length; i++) {
-  selElmnt = x[i].getElementsByTagName("select")[0];
-  /* For each element, create a new DIV that will act as the selected item: */
-  a = document.createElement("DIV");
-  a.setAttribute("class", "select-selected");
-  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-  x[i].appendChild(a);
-  /* For each element, create a new DIV that will contain the option list: */
-  b = document.createElement("DIV");
-  b.setAttribute("class", "select-items select-hide");
-  for (j = 1; j < selElmnt.length; j++) {
-    /* For each option in the original select element,
-    create a new DIV that will act as an option item: */
-    c = document.createElement("DIV");
-    c.innerHTML = selElmnt.options[j].innerHTML;
-    c.addEventListener("click", function(e) {
-        /* When an item is clicked, update the original select box,
-        and the selected item: */
-        var y, i, k, s, h;
-        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-        h = this.parentNode.previousSibling;
-        for (i = 0; i < s.length; i++) {
-          if (s.options[i].innerHTML == this.innerHTML) {
-            s.selectedIndex = i;
+	} else if (typeof choice == 'object' || choice instanceof Object) {
+		fontName = choice.id;
+	} 
 
-            h.innerHTML = this.innerHTML;
-            y = this.parentNode.getElementsByClassName("same-as-selected");
-            for (k = 0; k < y.length; k++) {
-              y[k].removeAttribute("class");
-            }
-            this.setAttribute("class", "same-as-selected");
+	selectBtn.classList.remove("AvenirNext", "HelveticaNeue", "CourierNew");
+	selectBtn.classList.add(fontName);
 
-
-           
-	        let selectFont = document.getElementById("selectFont").value;
-			changeFont(selectFont);
-			console.log("font changée");
-
-
-            break;
-
-
-          }
-        }
-        h.click();
-    });
-    b.appendChild(c);
-  }
-  x[i].appendChild(b);
-  a.addEventListener("click", function(e) {
-    /* When the select box is clicked, close any other select boxes,
-    and open/close the current select box: */
-    e.stopPropagation();
-    closeAllSelect(this);
-    this.nextSibling.classList.toggle("select-hide");
-    this.classList.toggle("select-arrow-active");
-  });
+	changeFont(fontName);
 }
 
-function closeAllSelect(elmnt) {
-  /* A function that will close all select boxes in the document,
-  except the current select box: */
-  var x, y, i, arrNo = [];
-  x = document.getElementsByClassName("select-items");
-  y = document.getElementsByClassName("select-selected");
-  for (i = 0; i < y.length; i++) {
-    if (elmnt == y[i]) {
-      arrNo.push(i)
-    } else {
-      y[i].classList.remove("select-arrow-active");
-    }
-  }
-  for (i = 0; i < x.length; i++) {
-    if (arrNo.indexOf(i)) {
-      x[i].classList.add("select-hide");
-    }
-  }
+
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+	document.getElementById("myDropdown").classList.toggle("show");
 }
 
-/* If the user clicks anywhere outside the select box,
-then close all select boxes: */
-document.addEventListener("click", closeAllSelect); 
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+	if (!event.target.matches('#selectBtn')) {
+		var dropdowns = document.getElementsByClassName("dropdown-content");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+			var openDropdown = dropdowns[i];
+			if (openDropdown.classList.contains('show')) {
+				openDropdown.classList.remove('show');
+			}
+		}
+	}
+}
 
-
-
+let currentFont;
 function changeFont(selectedFont) {
-	if (selectedFont === "Courier New") {
-		let courier_new = new FontFace('Courier New', 'url(src/fonts/CourierNew.woff)', { style: 'normal', weight: 400 });
 
-		courier_new.load().then(function(loaded_face) {
+	if (selectedFont === "AvenirNext") {
+		currentFont = new FontFace('Courier New', 'url(src/fonts/AvenirNextRegular.woff)', { style: 'normal', weight: 400 });
+
+		currentFont.load().then(function(loaded_face) {
+			document.fonts.add(loaded_face);
+		  	document.body.style.fontFamily = '"Avenir Next"';
+		});
+	} else if (selectedFont === "HelveticaNeue") {
+		currentFont = new FontFace('Courier New', 'url(src/fonts/HelveticaNeueRoman.woff)', { style: 'normal', weight: 400 });
+
+		currentFont.load().then(function(loaded_face) {
+			document.fonts.add(loaded_face);
+		  	document.body.style.fontFamily = '"Helvetica Neue"';
+		});
+	} else if (selectedFont === "CourierNew") {
+		currentFont = new FontFace('Courier New', 'url(src/fonts/CourierNew.woff)', { style: 'normal', weight: 400 });
+
+		currentFont.load().then(function(loaded_face) {
 			document.fonts.add(loaded_face);
 		  	document.body.style.fontFamily = '"Courier New"';
-			let currentFont = courier_new;
-
-		}).catch(function(error) {
-			console.log("Can't load font");
 		});
 	}
 }
 
-document.getElementById("openSettings").onclick = function(){
-	document.getElementById("settingsPannel").classList.toggle("revealed");
-};
+// initialise les fonts
+select("AvenirNext");
 
-// object.addEventListener("click", myScript);
-// document.getElementById("openSettings").addEventListener("click", function {
-// 	document.getElementById("settingsPannel").classList.add("shown");
-// });
-
-
-
-// let currentFont;
-
-// document.getElementById("fontSelector").onchange = function() {
-//     // changeFont(this.value);
-//     console.log(bite);
-// }
-
-// function changeFont(selectedFont) {
-// 	if (selectedFont === "Courier New") {
-// 		let courier_new = new FontFace('Courier New', 'url(src/fonts/CourierNew.woff)', { style: 'normal', weight: 400 });
-
-// 		courier_new.load().then(function(loaded_face) {
-// 			document.fonts.add(loaded_face);
-// 		  	document.body.style.fontFamily = '"Courier New"';
-// 			currentFont = courier_new;
-
-// 		}).catch(function(error) {
-// 			console.log("Can't load font");
-// 		});
-// 	}
-// }
-
-
-// let selectedFont = document.getElementById("selectedFont");
-// attribue la value du select en argument de la fonction 
-// selectedFont.onchange = function() {
-//     console.log("test");
-// }
-
-
-
-// let courier_new = new FontFace('courier New', 'url(src/fonts/courierNew.woff)', { style: 'regular', weight: 400 });
-
-// courier_new.load().then(function(loaded_face) {
-// 	document.fonts.add(loaded_face);
-//   	document.body.style.fontFamily = "courier New";
-// }).catch(function(error) {
-// 	console.log("Can't load font");
-// });

@@ -6,6 +6,50 @@
   font-family: "Avenir Next Bold";
   src: url("../fonts/AvenirNextBold.ttf"); }
 
+.dropdown {
+  position: relative;
+  display: inline-block; }
+  .dropdown #selectBtn {
+    background-color: #F2F2F2;
+    padding: 16px;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 200px; }
+    .dropdown #selectBtn img {
+      display: none;
+      width: 100%;
+      height: 20px;
+      pointer-events: none; }
+    .dropdown #selectBtn.AvenirNext .avenirnext {
+      display: block; }
+    .dropdown #selectBtn.CourierNew .couriernew {
+      display: block; }
+    .dropdown #selectBtn.HelveticaNeue .helveticaneue {
+      display: block; }
+  .dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 200px;
+    overflow: auto;
+    z-index: 100; }
+    .dropdown .dropdown-content .fontChoice {
+      color: black;
+      padding: 16px;
+      text-decoration: none;
+      display: flex;
+      cursor: pointer;
+      border-top: 1px solid #C2C2C2; }
+      .dropdown .dropdown-content .fontChoice img {
+        width: 100%;
+        height: 20px;
+        pointer-events: none; }
+      .dropdown .dropdown-content .fontChoice:hover {
+        background-color: #ddd; }
+    .dropdown .dropdown-content.show {
+      display: block; }
+
 body {
   margin: 0;
   overflow-x: hidden;
@@ -23,7 +67,8 @@ b {
   height: 100%;
   width: 100%;
   position: fixed;
-  overflow: hidden; }
+  overflow: hidden;
+  display: block; }
   #lightContainer #light {
     position: absolute;
     width: 18rem;
@@ -65,13 +110,7 @@ b {
   transition: right .2s;
   /* label */
   /* case */
-  /* coche */
-  /* The container must be positioned relative: */
-  /* Style the arrow inside the select element: */
-  /* Point the arrow upwards when the select box is open (active): */
-  /* style the items (options), including the selected item: */
-  /* Style items (options): */
-  /* Hide the items when the select box is closed: */ }
+  /* coche */ }
   #settingsPannel h3 {
     margin-top: 2em;
     text-align: center; }
@@ -188,42 +227,6 @@ b {
     top: .4em;
     right: .24em;
     cursor: pointer; }
-  #settingsPannel .custom-select {
-    position: relative; }
-  #settingsPannel .custom-select select {
-    display: none;
-    /*hide original SELECT element: */ }
-  #settingsPannel .select-selected {
-    background-color: #F2F2F2; }
-  #settingsPannel .select-selected:after {
-    position: absolute;
-    content: url(../images/arrowdown.svg);
-    width: 1.2em;
-    top: .7em;
-    right: .8em; }
-  #settingsPannel .select-selected.select-arrow-active:after {
-    transform: rotate(-180deg);
-    bottom: .7em; }
-  #settingsPannel .select-items div, #settingsPannel .select-selected {
-    color: #707070;
-    padding: .5em 1em;
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-    cursor: pointer; }
-  #settingsPannel .selectInside {
-    border: 1px solid #707070; }
-  #settingsPannel .select-items {
-    position: absolute;
-    background-color: #F2F2F2;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 99; }
-  #settingsPannel .select-items > div:nth-child(1), #settingsPannel .select-items > div:nth-child(2), #settingsPannel .select-items > div:nth-child(3), #settingsPannel .select-items > div:nth-child(4), #settingsPannel .select-items > div:nth-child(5) {
-    border-top: 1px solid #707070; }
-  #settingsPannel .select-hide {
-    display: none; }
-  #settingsPannel .select-items div:hover, #settingsPannel .same-as-selected {
-    background-color: white; }
   #settingsPannel .customFont {
     display: flex;
     justify-content: space-between; }
@@ -244,7 +247,7 @@ b {
   grid-template-areas: "top top top" "left toolbox right" "bottom bottom bottom"; }
   .toolboxContainer .toolbox {
     width: 100%;
-    display: none; }
+    display: block; }
     .toolboxContainer .toolbox .tool {
       cursor: pointer;
       border: 4px solid #F2F2F2;
@@ -303,12 +306,12 @@ b {
     justify-content: flex-end;
     flex-flow: column; }
     .toolboxContainer .bottom #wordCounter {
-      display: none;
+      display: block;
       color: #707070;
       margin-left: 1.4em;
       margin-bottom: 1em; }
     .toolboxContainer .bottom #characterCounter {
-      display: none;
+      display: block;
       color: #707070;
       margin-left: 1.4em;
       margin-bottom: 1em; }
@@ -342,10 +345,7 @@ body.dark {
     background-color: black;
     color: #C2C2C2;
     /* case */
-    /* coche */
-    /* Style the arrow inside the select element: */
-    /* style the items (options), including the selected item: */
-    /* Style items (options): */ }
+    /* coche */ }
     body.dark #settingsPannel #shareBox #share {
       background-color: #0D0D0D;
       color: #C2C2C2; }
@@ -377,21 +377,6 @@ body.dark {
       background: #C2C2C2; }
     body.dark #settingsPannel [type="checkbox"]:not(:checked) + label:after, body.dark #settingsPannel [type="checkbox"]:checked + label:after {
       content: url(../images/d_check.svg); }
-    body.dark #settingsPannel .select-selected {
-      background-color: #0D0D0D; }
-    body.dark #settingsPannel .select-selected:after {
-      content: url(../images/arrowdown.svg); }
-    body.dark #settingsPannel .select-items div, body.dark #settingsPannel .select-selected {
-      color: #C2C2C2;
-      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent; }
-    body.dark #settingsPannel .selectInside {
-      border: 1px solid #C2C2C2; }
-    body.dark #settingsPannel .select-items {
-      background-color: #0D0D0D; }
-    body.dark #settingsPannel .select-items > div:nth-child(1), body.dark #settingsPannel .select-items > div:nth-child(2), body.dark #settingsPannel .select-items > div:nth-child(3), body.dark #settingsPannel .select-items > div:nth-child(4), body.dark #settingsPannel .select-items > div:nth-child(5) {
-      border-top: 1px solid #C2C2C2; }
-    body.dark #settingsPannel .select-items div:hover, body.dark #settingsPannel .same-as-selected {
-      background-color: black; }
   body.dark .toolboxContainer .toolbox .tool {
     border: 4px solid #0D0D0D;
     transition: background-color .2s;
@@ -413,3 +398,71 @@ body.dark {
     color: #C2C2C2; }
   body.dark .editorContainer #editor {
     color: white; }
+
+@media (prefers-color-scheme: dark) {
+  body.autodark {
+    background-color: #0D0D0D; }
+    body.autodark #lightContainer #light {
+      background: radial-gradient(ellipse at center, rgba(194, 194, 194, 0.5) 0%, rgba(194, 194, 194, 0) 50%); }
+    body.autodark #openSettings {
+      color: #C2C2C2;
+      transition: color .2s; }
+      body.autodark #openSettings:hover {
+        color: white; }
+    body.autodark #settingsPannel {
+      background-color: black;
+      color: #C2C2C2;
+      /* case */
+      /* coche */ }
+      body.autodark #settingsPannel #shareBox #share {
+        background-color: #0D0D0D;
+        color: #C2C2C2; }
+      body.autodark #settingsPannel .toggleContainer {
+        border: 1px solid #C2C2C2;
+        color: #C2C2C2; }
+        body.autodark #settingsPannel .toggleContainer .center {
+          border-left: 1px solid #C2C2C2;
+          border-right: 1px solid #C2C2C2; }
+        body.autodark #settingsPannel .toggleContainer .choice {
+          background-color: #C2C2C2; }
+        body.autodark #settingsPannel .toggleContainer.tgLeft .left {
+          color: #0D0D0D; }
+        body.autodark #settingsPannel .toggleContainer.tgLeft .right, body.autodark #settingsPannel .toggleContainer.tgLeft .center {
+          color: #C2C2C2; }
+        body.autodark #settingsPannel .toggleContainer.tgCenter .center {
+          color: #0D0D0D; }
+        body.autodark #settingsPannel .toggleContainer.tgCenter .right, body.autodark #settingsPannel .toggleContainer.tgCenter .left {
+          color: #C2C2C2; }
+        body.autodark #settingsPannel .toggleContainer.tgRight .right {
+          color: #0D0D0D; }
+        body.autodark #settingsPannel .toggleContainer.tgRight .left, body.autodark #settingsPannel .toggleContainer.tgRight .center {
+          color: #C2C2C2; }
+      body.autodark #settingsPannel [type="checkbox"]:not(:checked) + label:before, body.autodark #settingsPannel [type="checkbox"]:checked + label:before {
+        border: 1px solid #C2C2C2; }
+      body.autodark #settingsPannel [type="checkbox"]:not(:checked) + label:before {
+        color: black; }
+      body.autodark #settingsPannel [type="checkbox"]:checked + label:before {
+        background: #C2C2C2; }
+      body.autodark #settingsPannel [type="checkbox"]:not(:checked) + label:after, body.autodark #settingsPannel [type="checkbox"]:checked + label:after {
+        content: url(../images/d_check.svg); }
+    body.autodark .toolboxContainer .toolbox .tool {
+      border: 4px solid #0D0D0D;
+      transition: background-color .2s;
+      color: #C2C2C2; }
+      body.autodark .toolboxContainer .toolbox .tool:after {
+        background-color: #0D0D0D; }
+      body.autodark .toolboxContainer .toolbox .tool:hover {
+        background-color: #C2C2C2;
+        color: white; }
+    body.autodark .toolboxContainer .mask {
+      background: #0D0D0D; }
+    body.autodark .toolboxContainer .top #fullscreenButton {
+      color: #C2C2C2; }
+      body.autodark .toolboxContainer .top #fullscreenButton:hover {
+        color: white; }
+    body.autodark .toolboxContainer .bottom #wordCounter {
+      color: #C2C2C2; }
+    body.autodark .toolboxContainer .bottom #characterCounter {
+      color: #C2C2C2; }
+    body.autodark .editorContainer #editor {
+      color: white; } }

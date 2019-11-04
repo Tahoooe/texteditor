@@ -20,13 +20,6 @@ $d_thirdColor: white;
 $settingsColor: white;
 $d_settingsColor: black;
 
-// $mainColor : #F2F2F2, #0D0D0D;
-// $secondColor : #707070, #595959;
-// $thirdColor: black, white;
-
-// $lightCenter : rgba(#707070, .5) 0%, yellow;
-// $lightAround : rgba(#707070, 0) 50%, coral;
-
 $mainFont: Avenir Next;
 $mainFontBold : Avenir Next Bold;
 
@@ -214,102 +207,179 @@ $inputHeight: 48px;
 	}
 }
 
-@mixin customSelect {
-	/* The container must be positioned relative: */
-	.custom-select {
-	  position: relative;
+// @mixin customSelect {
+// 	/* The container must be positioned relative: */
+// 	.custom-select {
+// 	  position: relative;
+// 	}
+
+// 	.custom-select select {
+// 	  display: none; /*hide original SELECT element: */
+// 	}
+
+// 	.select-selected {
+// 	  background-color: $mainColor;
+// 	}
+
+// 	/* Style the arrow inside the select element: */
+// 	.select-selected:after {
+// 	    position: absolute;
+// 	    content: url(../images/arrowdown.svg);
+// 	    width: 1.2em;
+// 	    top: .6em;
+// 	    right: .8em;
+// 	}
+
+// 	/* Point the arrow upwards when the select box is open (active): */
+// 	.select-selected.select-arrow-active:after {
+// 	    transform:rotate(-180deg);
+// 	    bottom: .9em;
+// 	}
+
+// 	/* style the items (options), including the selected item: */
+// 	.select-items div,.select-selected {
+// 	  color: $secondColor;
+// 	  padding: .5em 1em;
+// 	  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+// 	  cursor: pointer;
+// 	}
+
+// 	.selectInside {
+// 	    border: 1px solid $secondColor;
+// 	}
+
+// 	/* Style items (options): */
+// 	.select-items {
+// 	  position: absolute;
+// 	  background-color: $mainColor;
+// 	  // top: 100%;
+// 	  left: 0;
+// 	  right: 0;
+// 	  z-index: 99;
+// 	}
+
+// 	.select-items > div:nth-child(1), .select-items > div:nth-child(2), .select-items > div:nth-child(3), .select-items > div:nth-child(4), .select-items > div:nth-child(5) {
+// 	    border-top: 1px solid $secondColor;
+// 	}
+
+// 	/* Hide the items when the select box is closed: */
+// 	.select-hide {
+// 	  display: none;
+// 	}
+
+// 	.select-items div:hover, .same-as-selected {
+// 	  background-color: $settingsColor;
+// 	}
+// }
+
+// @mixin d_customSelect {
+
+// 	.select-selected {
+// 	  background-color: $d_mainColor;
+// 	}
+
+// 	/* Style the arrow inside the select element: */
+// 	.select-selected:after {
+// 	    content: url(../images/arrowdown.svg);
+// 	}
+
+// 	/* style the items (options), including the selected item: */
+// 	.select-items div,.select-selected {
+// 	  color: $d_secondColor;
+// 	  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+// 	}
+
+	
+
+// 	/* Style items (options): */
+// 	.select-items {
+// 	  background-color: $d_mainColor;
+// 	}
+
+// 	.select-items > div:nth-child(1), .select-items > div:nth-child(2), .select-items > div:nth-child(3), .select-items > div:nth-child(4), .select-items > div:nth-child(5) {
+// 	    border-top: 1px solid $d_secondColor;
+// 	}
+
+// 	.select-items div:hover, .same-as-selected {
+// 	  background-color: $d_settingsColor;
+// 	}
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+
+	#selectBtn {
+		background-color: $mainColor;
+		padding: 16px;
+		border: none;
+		box-sizing: border-box;
+		cursor: pointer;
+		width: 200px;
+
+		img {
+			display: none;
+			width: 100%;
+			height: 20px;
+			pointer-events: none;
+		}
+
+		&.AvenirNext .avenirnext {
+			display: block;
+		}
+
+		&.CourierNew .couriernew {
+			display: block;
+		}
+
+		&.HelveticaNeue .helveticaneue {
+			display: block;
+		}
 	}
 
-	.custom-select select {
-	  display: none; /*hide original SELECT element: */
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f1f1f1;
+		width: 200px;
+		overflow: auto;
+		z-index: 100;
+
+		.fontChoice {
+			color: black;
+			padding: 16px;
+			text-decoration: none;
+			display: flex;
+			cursor: pointer;
+			border-top: 1px solid $d_secondColor;
+
+			img {
+				width: 100%;
+				height: 20px;
+				pointer-events: none;
+			}
+
+			&:hover {
+				background-color: #ddd;
+			}
+		}
+
+		&.show {
+			display: block;
+		}
 	}
 
-	.select-selected {
-	  background-color: $mainColor;
-	}
-
-	/* Style the arrow inside the select element: */
-	.select-selected:after {
-	    position: absolute;
-	    content: url(../images/arrowdown.svg);
-	    width: 1.2em;
-	    top: .7em;
-	    right: .8em;
-	}
-
-	/* Point the arrow upwards when the select box is open (active): */
-	.select-selected.select-arrow-active:after {
-	    transform:rotate(-180deg);
-	    bottom: .7em;
-	}
-
-	/* style the items (options), including the selected item: */
-	.select-items div,.select-selected {
-	  color: $secondColor;
-	  padding: .5em 1em;
-	  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-	  cursor: pointer;
-	}
-
-	.selectInside {
-	    border: 1px solid $secondColor;
-	}
-
-	/* Style items (options): */
-	.select-items {
-	  position: absolute;
-	  background-color: $mainColor;
-	  top: 100%;
-	  left: 0;
-	  right: 0;
-	  z-index: 99;
-	}
-
-	.select-items > div:nth-child(1), .select-items > div:nth-child(2), .select-items > div:nth-child(3), .select-items > div:nth-child(4), .select-items > div:nth-child(5) {
-	    border-top: 1px solid $secondColor;
-	}
-
-	/* Hide the items when the select box is closed: */
-	.select-hide {
-	  display: none;
-	}
-
-	.select-items div:hover, .same-as-selected {
-	  background-color: $settingsColor;
-	}
-}
-
-@mixin d_customSelect {
-
-	.select-selected {
-	  background-color: $d_mainColor;
-	}
-
-	/* Style the arrow inside the select element: */
-	.select-selected:after {
-	    content: url(../images/arrowdown.svg);
-	}
-
-	/* style the items (options), including the selected item: */
-	.select-items div,.select-selected {
-	  color: $d_secondColor;
-	  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-	}
-
-	.selectInside {
-	    border: 1px solid $d_secondColor;
-	}
-
-	/* Style items (options): */
-	.select-items {
-	  background-color: $d_mainColor;
-	}
-
-	.select-items > div:nth-child(1), .select-items > div:nth-child(2), .select-items > div:nth-child(3), .select-items > div:nth-child(4), .select-items > div:nth-child(5) {
-	    border-top: 1px solid $d_secondColor;
-	}
-
-	.select-items div:hover, .same-as-selected {
-	  background-color: $d_settingsColor;
-	}
+	
 }
