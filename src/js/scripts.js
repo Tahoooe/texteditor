@@ -10,58 +10,48 @@ document.addEventListener('mousemove', e => {
 
 // rich editor formating
 const editor = document.getElementById("editor");
-
-
-function mkHeader() {
-	document.execCommand('formatBlock',false,'h1');
-}
-
-function mkUnderline() {
-	document.execCommand('underline',false,'');
-}
-
-function mkBold() {
-	document.execCommand('bold',false,'');
-}
-
-function mkStrikethrough() {
-	document.execCommand('strikethrough',false,'');
-}
-
-function mkJustify() {
-	document.execCommand('justifyFull',false,'');
-}
-
-function mkAlignCenter() {
-	document.execCommand('justifyCenter',false,'');
-}
-
-function mkAlignLeft() {
-	document.execCommand('justifyLeft',false,'');
-}
-
-function mkAlignRight() {
-	document.execCommand('justifyRight',false,'');
-}
-
-function mkQuote() {
-	document.execCommand('formatBlock',false,'<blockquote>');
-}
-
-function mkOrderedList() {
-	document.execCommand('insertOrderedList',false,'');
-}
-
-function mkUnorderedList() {
-	document.execCommand('insertUnorderedList',false,'');
-}
-
-function mkLink() {
-	document.execCommand('createLink',false,'');
-}
-
-function mkUnlink() {
-	document.execCommand('unlink',false,'');
+function format(style) {
+	switch (style) {
+		case "header" : 
+			document.execCommand('formatBlock',false,'h1');
+			break;
+		case "underline":
+			document.execCommand('underline',false,'');
+			break;
+		case "bold":
+			document.execCommand('bold',false,'');
+			break;
+		case "strikethrough":
+			document.execCommand('strikethrough',false,'');
+			break;
+		case "justify":
+			document.execCommand('justifyFull',false,'');
+			break;
+		case "alignCenter":
+			document.execCommand('justifyCenter',false,'');
+			break;
+		case "alignLeft":
+			document.execCommand('justifyLeft',false,'');
+			break;
+		case "alignRight":
+			document.execCommand('justifyRight',false,'');
+			break;
+		case "quote":
+			document.execCommand('formatBlock',false,'<blockquote>');
+			break;
+		case "orderedList":
+			document.execCommand('insertOrderedList',false,'');
+			break;
+		case "unorderedList":
+			document.execCommand('insertUnorderedList',false,'');
+			break;
+		case "link":
+			document.execCommand('createLink',false,'');
+			break;
+		case "unlink":
+			document.execCommand('unlink',false,'');
+			break;
+	}
 }
 
 document.addEventListener("keydown", function(key) {
@@ -127,6 +117,7 @@ function countWords(str) {
 
 // words and characters counter
 const wordCounter = document.getElementById("wordCounter");
+const characterCounter = document.getElementById("characterCounter");
 
 let editorContent = editor.textContent;
 let editorWords = countWords(editorContent);
@@ -156,9 +147,30 @@ document.getElementById("fullscreenButton").onclick = function(){
 };
 
 // open settings button
-document.getElementById("openSettings").onclick = function(){
-	document.getElementById("settingsPannel").classList.toggle("revealed");
-};
+// 	document.getElementById("settingsPannel").classList.toggle("revealed");
+// 	document.getElementById("closeSettings").classList.toggle("shown");
+// };
+
+// document.getElementById("closeSettings").onclick = function(){
+// 	document.getElementById("settingsPannel").classList.remove("revealed");
+// 	document.getElementById("closeSettings").classList.remove("shown");
+// };
+
+const settingsPannel = document.getElementById("settingsPannel");
+const overlay = document.getElementById("closeSettings");
+const lightContainer = document.getElementById("lightContainer");
+const toolbox = document.getElementById("toolbox");
+
+function toggleSettings() {
+	settingsPannel.classList.toggle("revealed");
+	overlay.classList.toggle("shown");
+
+	if (toolbox.classList.contains("shown") && settingsPannel.classList.contains("revealed")) {
+		lightContainer.classList.remove("shown");
+	} else if (toolbox.classList.contains("shown") && !settingsPannel.classList.contains("revealed")) {
+		lightContainer.classList.add("shown");
+	}
+}
 
 //base for all toggles 
 function toggleBase(toggling, target) {
@@ -201,8 +213,6 @@ function toggle(type, pos) {
 			document.body.classList.add("dark");
 		}
 
-	} else {
-		console.log("marche pas");
 	}
 }
 
@@ -219,26 +229,30 @@ initToggle();
 function checkboxes(check) {
 
 	if (check.checked && check.id === "words") {
-		document.getElementById("wordCounter").classList.add("shown");
+		wordCounter.classList.add("shown");
 	} else if (!check.checked && check.id === "words") {
-		document.getElementById("wordCounter").classList.remove("shown");
+		wordCounter.classList.remove("shown");
 
 	} else if (check.checked && check.id === "characters") {
-		document.getElementById("characterCounter").classList.add("shown");
+		characterCounter.classList.add("shown");
 	} else if (!check.checked && check.id === "characters") {
-		document.getElementById("characterCounter").classList.remove("shown");
+		characterCounter.classList.remove("shown");
 
 	} else if (check.checked && check.id === "tools") {
-		document.getElementById("toolbox").classList.add("shown");
-		document.getElementById("lightContainer").classList.add("shown");
+		toolbox.classList.add("shown");
+		lightContainer.classList.add("shown");
 	} else if (!check.checked && check.id === "tools") {
-		document.getElementById("toolbox").classList.remove("shown");
-		document.getElementById("lightContainer").classList.remove("shown");
+		toolbox.classList.remove("shown");
+		lightContainer.classList.remove("shown");
 	}
 }
 
 
-
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+	document.getElementById("myDropdown").classList.toggle("show");
+}
 
 const selectBtn = document.getElementById("selectBtn");
 function select(choice) {
@@ -259,26 +273,6 @@ function select(choice) {
 }
 
 
-
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-	document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-	if (!event.target.matches('#selectBtn')) {
-		var dropdowns = document.getElementsByClassName("dropdown-content");
-		var i;
-		for (i = 0; i < dropdowns.length; i++) {
-			var openDropdown = dropdowns[i];
-			if (openDropdown.classList.contains('show')) {
-				openDropdown.classList.remove('show');
-			}
-		}
-	}
-}
 
 let currentFont;
 function changeFont(selectedFont) {
