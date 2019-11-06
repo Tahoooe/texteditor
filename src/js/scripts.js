@@ -147,6 +147,7 @@ document.getElementById("fullscreenButton").onclick = function(){
 };
 
 // open settings button
+// document.getElementById("openSettings").onclick = function(){
 // 	document.getElementById("settingsPannel").classList.toggle("revealed");
 // 	document.getElementById("closeSettings").classList.toggle("shown");
 // };
