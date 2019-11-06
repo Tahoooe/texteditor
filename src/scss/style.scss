@@ -13,7 +13,7 @@ b {
 }
 
 // à changer en none pour que les checkboxes marchent
-$hidden : none;
+$hidden : block;
 
 .shown {
 	display: block!important;

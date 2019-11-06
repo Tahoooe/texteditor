@@ -68,7 +68,7 @@ b {
   width: 100%;
   position: fixed;
   overflow: hidden;
-  display: none; }
+  display: block; }
   #lightContainer #light {
     position: absolute;
     width: 18rem;
@@ -259,7 +259,7 @@ b {
   grid-template-areas: "top top top" "left toolbox right" "bottom bottom bottom"; }
   .toolboxContainer .toolbox {
     width: 100%;
-    display: none; }
+    display: block; }
     .toolboxContainer .toolbox .tool {
       cursor: pointer;
       border: 4px solid #F2F2F2;
@@ -318,12 +318,12 @@ b {
     justify-content: flex-end;
     flex-flow: column; }
     .toolboxContainer .bottom #wordCounter {
-      display: none;
+      display: block;
       color: #707070;
       margin-left: 1.4em;
       margin-bottom: 1em; }
     .toolboxContainer .bottom #characterCounter {
-      display: none;
+      display: block;
       color: #707070;
       margin-left: 1.4em;
       margin-bottom: 1em; }
